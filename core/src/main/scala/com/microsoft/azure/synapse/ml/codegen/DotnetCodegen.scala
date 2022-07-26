@@ -17,7 +17,7 @@ object DotnetCodegen {
   import CodeGenUtils._
 
   def generateDotnetClasses(conf: CodegenConfig): Unit = {
-    val instantiatedClasses = instantiateServices[DotnetWrappable](conf.jarName)
+    val instantiatedClasses = instantiateServices[DotnetWrappable[_]](conf.jarName)
     instantiatedClasses.foreach { w =>
       println(w.getClass.getName)
       w.makeDotnetFile(conf)

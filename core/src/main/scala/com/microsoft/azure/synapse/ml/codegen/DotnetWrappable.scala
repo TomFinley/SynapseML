@@ -38,7 +38,7 @@ object DotnetHelper {
   }
 }
 
-trait DotnetWrappable extends BaseWrappable {
+trait DotnetWrappable[T] extends BaseWrappable[T] {
 
   import GenerationUtils._
 

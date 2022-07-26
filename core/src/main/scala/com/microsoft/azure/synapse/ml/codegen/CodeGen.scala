@@ -29,7 +29,7 @@ object CodeGen {
   import CodeGenUtils._
 
   def generatePythonClasses(conf: CodegenConfig): Unit = {
-    val instantiatedClasses = instantiateServices[PythonWrappable](conf.jarName)
+    val instantiatedClasses = instantiateServices[PythonWrappable[_]](conf.jarName)
     instantiatedClasses.foreach { w =>
       println(w.getClass.getName)
       w.makePyFile(conf)
@@ -37,7 +37,7 @@ object CodeGen {
   }
 
   def generateRClasses(conf: CodegenConfig): Unit = {
-    val instantiatedClasses = instantiateServices[RWrappable](conf.jarName)
+    val instantiatedClasses = instantiateServices[RWrappable[_]](conf.jarName)
     instantiatedClasses.foreach { w =>
       println(w.getClass.getName)
       w.makeRFile(conf)

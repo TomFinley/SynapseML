@@ -10,16 +10,19 @@ import org.apache.commons.lang.StringEscapeUtils
 import org.apache.spark.ml.evaluation.Evaluator
 import org.apache.spark.ml.param._
 import org.apache.spark.ml.{Estimator, Model, Transformer}
-
 import java.lang.reflect.ParameterizedType
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
+
 import scala.collection.Iterator.iterate
+import scala.collection.mutable
+import scala.reflect.runtime.{universe => ru}
 
-
-trait BaseWrappable extends Params {
+trait BaseWrappable[T] extends Params {
 
   import com.microsoft.azure.synapse.ml.codegen.DefaultParamInfo._
+
+  protected implicit def wrappingType: ru.TypeTag[T] = ru.typeTag
 
   protected val thisStage: Params = this
 
@@ -60,12 +63,43 @@ trait BaseWrappable extends Params {
 
 }
 
-trait PythonWrappable extends BaseWrappable {
+trait PythonWrappable[T] extends BaseWrappable[T] {
 
   import GenerationUtils._
 
   def pyAdditionalMethods: String = {
     ""
+  }
+
+  private def generateMethod(myType: ru.Type, method: ru.MethodSymbol, wrapObj: wrap, wrappedNames: mutable.Set[String],
+                     sbDef: StringBuilder, sbBody: StringBuilder): Unit = {
+    ???
+  }
+
+  protected def pyBasicMethods: String = {
+    val myType = wrappingType.tpe
+
+    // TODO: Overloading methods of the same name in a Python wrapper can be awkward.
+    //  Only add once we're certain we need it.
+    // TODO: The existing wrapping code probably adds some methods. We aren't tracking these here, and probably should.
+    //  If we choose to put these back into the original code, then this problem will become easier to address.
+    val wrappedNames = mutable.Set.empty[String]
+
+    def asOptionMethod(s: ru.Symbol): Option[ru.MethodSymbol] = if (s.isMethod) Some(s.asMethod) else None
+
+    val sbAll = new mutable.StringBuilder
+    val sbDef = new mutable.StringBuilder
+    val sbBody = new mutable.StringBuilder
+
+    for (method <- myType.members.flatMap(asOptionMethod)) {
+      for (wrapObj <- WrapUtils.getWrapForMethod(method)) {
+        generateMethod(myType, method, wrapObj, wrappedNames, sbDef, sbBody)
+        if (sbAll.nonEmpty) sbAll.append('\n')
+        sbAll.append(sbDef)
+        sbAll.append(sbBody)
+      }
+    }
+    sbAll.result()
   }
 
   protected lazy val pyInternalWrapper = false
@@ -372,10 +406,9 @@ trait PythonWrappable extends BaseWrappable {
       FileUtilities.join(srcDir, pyClassName + ".py").toPath,
       pythonClass().getBytes(StandardCharsets.UTF_8))
   }
-
 }
 
-trait RWrappable extends BaseWrappable {
+trait RWrappable[T] extends BaseWrappable[T] {
 
   import GenerationUtils._
 
@@ -495,4 +528,6 @@ trait RWrappable extends BaseWrappable {
 
 }
 
-trait Wrappable extends PythonWrappable with RWrappable with DotnetWrappable
+trait TypeWrappable[T] extends PythonWrappable[T] with RWrappable[T] with DotnetWrappable[T]
+
+trait Wrappable extends TypeWrappable[Params]
