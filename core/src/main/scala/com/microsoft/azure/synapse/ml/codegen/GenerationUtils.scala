@@ -8,7 +8,7 @@ import com.microsoft.azure.synapse.ml.param.{DotnetWrappableParam, PythonWrappab
 import org.apache.spark.ml.param._
 
 object GenerationUtils {
-  def indent(lines: String, numTabs: Int): String = {
+  def indent(lines: String, numTabs: Int = 1): String = {
     lines.split("\n".toCharArray).map(l => "    " * numTabs + l).mkString("\n")
   }
 

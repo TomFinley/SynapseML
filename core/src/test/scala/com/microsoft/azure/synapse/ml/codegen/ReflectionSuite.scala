@@ -1,6 +1,7 @@
 package com.microsoft.azure.synapse.ml.codegen
 
-import org.apache.spark.ml.param.{ParamMap, Params}
+import org.apache.commons.lang.StringUtils
+import org.apache.spark.ml.param.{DoubleParam, IntParam, ParamMap, ParamValidators, Params}
 import org.scalatest.FunSuite
 
 import scala.reflect.runtime.{universe => ru}
@@ -115,7 +116,7 @@ class ReflectionSuite extends FunSuite {
   test("Python type hints per PEP 484") {
     def get[T: ru.TypeTag]: String = {
       val trans = PythonInterop.getTranslator(ru.typeOf[T])
-      trans.typeHint
+      trans.typeHint.orNull
     }
 
     assertResult("int")(get[Int])
@@ -130,7 +131,21 @@ class ReflectionSuite extends FunSuite {
   test("Python method generation test") {
     import ReflectionSuite.{WrappableTestClass => C}
     val inst = new C()
-    println(inst.pyAdditionalMethods)
+    val pyClassStr: String = inst.pythonClassTestPassthrough
+    println(pyClassStr)
+
+    def exactlyOnce(s: String): Boolean = StringUtils.countMatches(pyClassStr, s) == 1
+
+    assert(exactlyOnce("    def foo(self, bar: int) -> float:"))
+    assert(!pyClassStr.contains("    def foo2(self, bar: int) -> float:"))
+    assert(exactlyOnce("    def foo2override(self, bar: int) -> float:"))
+    assert(exactlyOnce("    def foo3(self) -> int:"))
+    assert(exactlyOnce("    def foo4(self, bar: int, biz: int) -> float:"))
+    assert(!pyClassStr.contains("    def foo5(self) -> int:"))
+    assert(exactlyOnce("    def getGoofy(self)"))
+    assert(!pyClassStr.contains("    def setGoofy(self, value"))
+    assert(exactlyOnce("    def getSilly(self)"))
+    assert(exactlyOnce("    def setSilly(self, value"))
   }
 }
 
@@ -175,20 +190,38 @@ object ReflectionSuite {
     def a5(b: String = "hello", c: Int = 2): String = a3(b, c)
   }
 
-  class WrappableTestClass() extends TypeWrappable[ReflectionSuite.WrappableTestClass] {
-    //private[ml] override def wrappingType: ru.TypeTag[WrappableTestClass] = ru.typeTag
+  class WrappableTestClass() extends TypeWrappable[ReflectionSuite.WrappableTestClass] with Params {
+    private[ml] override def wrappingType: ru.TypeTag[WrappableTestClass] = ru.typeTag
 
     @wrap def foo(bar: Int): Double = bar + 0.5
 
-    @wrap def foo2(bar: Int): Double = bar + 0.5
+    @wrap(false, "foo2override")
+    def foo2(bar: Int): Double = bar + 0.5
 
     @wrap def foo3: Int = 2
 
     @wrap def foo4(bar: Int, biz: Int): Double = (bar + biz) * 0.5
 
-    override def copy(extra: ParamMap): Params = null
+    def foo5: Int = 3
+
+    override def copy(extra: ParamMap): WrappableTestClass = defaultCopy(extra)
 
     override val uid: String = ""
+
+    final val goofy: IntParam = new IntParam(this, "goofy", "A very goofy parameter.",
+      ParamValidators.gtEq(0))
+    final val silly: DoubleParam = new DoubleParam(this, "silly", "A very silly parameter.",
+      ParamValidators.gtEq(1.0))
+
+    final def getGoofy: Int = $(goofy)
+
+    final def getSilly: Double = $(silly)
+
+    final def setSilly(value: Double): this.type = set(silly, value)
+
+    setDefault(goofy -> 2, silly -> 3.0)
+
+    def pythonClassTestPassthrough: String = this.pythonClass()
   }
 
   /**

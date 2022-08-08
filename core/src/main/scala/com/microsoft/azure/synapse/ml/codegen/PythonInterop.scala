@@ -12,9 +12,9 @@ object PythonInterop {
     /**
       * The string Python representation of the type hint, per [[https://www.python.org/dev/peps/pep-0484/ PEP 484]].
       *
-      * @return The Python type hint for the type.
+      * @return The Python type hint for the type, or [[None]] if this item should be left untyped.
       */
-    def typeHint: String
+    def typeHint: Option[String]
 
     /**
       * Whether or not a given item can be passed in or returned directly, without need to use either [[wrapOutput()]]
@@ -25,8 +25,6 @@ object PythonInterop {
       * @return True if the item can be used directly without explicit conversion code, beyond that in py4j.
       */
     def isPassthrough: Boolean
-
-    // TODO: Due to the recursive nature of some of these transformations,
 
     /**
       * Given a value that came from the Java/Scala side (as from a return value), convert it into a Python value.
@@ -72,6 +70,9 @@ object PythonInterop {
     * @param t The type.
     * @return A transcoder corresponding to that type.
     */
+  //noinspection ScalaStyle
+  // If the inspection is left on, it complains that the case statement has too much cyclomatic complexity. Apparently
+  // even a very modest case statement like this is just far, far too complex to endure.
   def getTranslator(t: ru.Type): Translator[_] = {
     // Unfortunately just doing maps for some of these may not work.
 
@@ -81,6 +82,7 @@ object PythonInterop {
 
     t match {
       case _ if isSub[Option[_]] => new OptionTranslator(t)
+      case t if isSub[Seq[_]] => new SeqTranslator(t)
       // TODO: At some point it seems sensible that we might have a Boolean argument or return value. In fact
       //  I'm a little surprised wee do not yet?
       case _ if is[Int] => IntPassthroughTranslator
@@ -89,7 +91,6 @@ object PythonInterop {
       case _ if is[Double] => DoublePassthroughTranslator
       case _ if is[Array[Byte]] => ByteArrayPassthroughTranslator
       // Is this the canonical way Scala users pass around byte buffers? Probably not that important.
-      case t if isSub[Seq[_]] => new SeqTranslator(t)
       case _ => throw new UnsupportedOperationException(s"Translating type '$t' is not supported yet.")
     }
   }
@@ -115,7 +116,7 @@ object PythonInterop {
     * @param hint The input hint, used as a simple value from [[typeHint]].
     */
   private abstract case class PassthroughTranslator[T](private val hint: String) extends Translator[T] {
-    final override def typeHint: String = hint
+    final override def typeHint: Option[String] = Some(hint)
 
     final override def isPassthrough: Boolean = true
 
@@ -228,12 +229,14 @@ object PythonInterop {
     }
 
     /**
-      * The type hint for a sequence, which is `typing.List`. Note that using `list` directly in this fashion
-      * was not done for Python 3.8.
+      * The type hint for a sequence, which is `typing.List`.
+      *
+      * Note that using `list` directly in this fashion was supported first in Python 3.9, which is later than the
+      * earliest supported version of Python for SynapseML.
       *
       * @return The Python type hint for the sequence type, which is represented in python as a list.
       */
-    override def typeHint: String = s"List[${elemTranslator.typeHint}]"
+    override def typeHint: Option[String] = elemTranslator.typeHint.map(h => s"List[$h]")
 
     override def wrapOutput(symbol: String, usedSymbols: => Set[String]): String = {
       // We want this to become as a list. We pass it back to our code, making it a java collections.
@@ -296,7 +299,7 @@ object PythonInterop {
     }
 
     // Note that the alternative to `Optional[Foo]` of Foo | None` is not present in Python 3.8 typing.
-    override def typeHint: String = s"Optional[${elemTranslator.typeHint}]"
+    override def typeHint: Option[String] = elemTranslator.typeHint.map(h => s"Optional[${h}]")
 
     override def isPassthrough: Boolean = false
 

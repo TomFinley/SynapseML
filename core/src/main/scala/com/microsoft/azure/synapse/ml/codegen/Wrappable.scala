@@ -22,7 +22,7 @@ trait BaseWrappable[T] extends Params {
 
   import com.microsoft.azure.synapse.ml.codegen.DefaultParamInfo._
 
-  protected implicit def wrappingType: ru.TypeTag[T] = ru.typeTag
+  private[ml] def wrappingType: ru.TypeTag[T]
 
   protected val thisStage: Params = this
 
@@ -71,12 +71,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     ""
   }
 
-  private def generateMethod(myType: ru.Type, method: ru.MethodSymbol, wrapObj: wrap, wrappedNames: mutable.Set[String],
-                     sbDef: StringBuilder, sbBody: StringBuilder): Unit = {
-    ???
-  }
-
-  protected def pyBasicMethods: String = {
+  private[ml] def pyBasicMethods: String = {
     val myType = wrappingType.tpe
 
     // TODO: Overloading methods of the same name in a Python wrapper can be awkward.
@@ -118,6 +113,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
       case _: Model[_] => "JavaModel"
       case _: Transformer => "JavaTransformer"
       case _: Evaluator => "JavaEvaluator"
+      case _ => "object"
     }
   }
 
@@ -131,7 +127,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     }.mkString("\n")
     s"""|"\""
         |Args:
-        |${indent(argLines, 1)}
+        |${indent(argLines)}
         |"\""
         |""".stripMargin
   }
@@ -155,7 +151,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     }.mkString("\n")
   }
 
-  protected def pyParamArg[T](p: Param[T]): String = {
+  protected def pyParamArg[P](p: Param[P]): String = {
     (p, thisStage.getDefault(p)) match {
       case (_: ServiceParam[_], _) =>
         s"${p.name}=None,\n${p.name}Col=None"
@@ -166,7 +162,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     }
   }
 
-  protected def pyParamDefault[T](p: Param[T]): Option[String] = {
+  protected def pyParamDefault[P](p: Param[P]): Option[String] = {
     (p, thisStage.getDefault(p)) match {
       case (_: ServiceParam[_], _) =>
         None
@@ -195,20 +191,20 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     p match {
       case _: ServiceParam[_] =>
         s"""|def set$capName(self, value):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    if isinstance(value, list):
             |        value = SparkContext._active_spark_context._jvm.com.microsoft.azure.synapse.ml.param.ServiceParam.toSeq(value)
             |    self._java_obj = self._java_obj.set$capName(value)
             |    return self
             |
             |def set${capName}Col(self, value):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    self._java_obj = self._java_obj.set${capName}Col(value)
             |    return self
             |""".stripMargin
       case _ =>
         s"""|def set${p.name.capitalize}(self, value):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    self._set(${p.name}=value)
             |    return self
             |""".stripMargin
@@ -270,7 +266,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
       case _: DataFrameParam =>
         s"""|
             |def get$capName(self):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    ctx = SparkContext._active_spark_context
             |    sql_ctx = SQLContext.getOrCreate(ctx)
             |    return DataFrame(self._java_obj.get$capName(), sql_ctx)
@@ -278,19 +274,19 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
       case _: TransformerParam | _: EstimatorParam | _: PipelineStageParam =>
         s"""|
             |def get$capName(self):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    return JavaParams._from_java(self._java_obj.get$capName())
             |""".stripMargin
       case _: ServiceParam[_] =>
         s"""|
             |def get$capName(self):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    return self._java_obj.get$capName()
             |""".stripMargin
       case _ =>
         s"""|
             |def get$capName(self):
-            |${indent(docString, 1)}
+            |${indent(docString)}
             |    return self.getOrDefault(self.${p.name})
             |""".stripMargin
     }
@@ -305,14 +301,14 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
        |def __init__(
        |    self,
        |    java_obj=None,
-       |${indent(pyParamsArgs, 1)}
+       |${indent(pyParamsArgs)}
        |    ):
        |    super($pyClassName, self).__init__()
        |    if java_obj is None:
        |        self._java_obj = self._new_java_obj("${thisStage.getClass.getName}", self.uid)
        |    else:
        |        self._java_obj = java_obj
-       |${indent(pyParamsDefaults, 1)}
+       |${indent(pyParamsDefaults)}
        |    if hasattr(self, \"_input_kwargs\"):
        |        kwargs = self._input_kwargs
        |    else:
@@ -322,8 +318,13 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
        |        for k,v in kwargs.items():
        |            if v is not None:
        |                getattr(self, "set" + k[0].upper() + k[1:])(v)
+       |${indent(pyInitFuncJavaBridge())}
        |""".stripMargin
 
+  }
+
+  protected def pyInitFuncJavaBridge(): String = {
+    "self._jvmv = pyspark.SparkContext.getOrCreate()._jvm"
   }
 
   //noinspection ScalaStyle
@@ -346,6 +347,8 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
         |from synapse.ml.core.schema.Utils import *
         |from pyspark.ml.param import TypeConverters
         |from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+        |from py4j.java_collections import SetConverter, MapConverter, ListConverter
+        |from typing import List, Optional
         |$pyExtraEstimatorImports
         |
         |@inherit_doc
@@ -392,6 +395,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
         |
         |${indent(pyExtraEstimatorMethods, 1)}
         |
+        |${indent(pyBasicMethods, 1)}
         |${indent(pyAdditionalMethods, 1)}
         """.stripMargin
   }
@@ -405,6 +409,110 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     Files.write(
       FileUtilities.join(srcDir, pyClassName + ".py").toPath,
       pythonClass().getBytes(StandardCharsets.UTF_8))
+  }
+
+  /**
+    * Given a parameter and possible default as well as any existing default,
+    *
+    * @param param             The symbol of the parameter in the method we are wrapping.
+    * @param defaultOption     The default object. This will be translated to Python if possible.
+    * @param firstDefaultParam The name of the first default parameter, if possible. This is used to generate a
+    *                          comprehensible error message in case we try to wrap a method where
+    * @param usedVarNames      A set of already utilized symbols, in case temporary values must be used.
+    * @param sbDef             A side effect of this method is to append a parameter definition.
+    * @param sbBody            A side effect of this method is to append translation code to this buffer, if necessary.
+    * @return Either the first default parameter, if it was defined, or else this parameter name if
+    */
+  private def generateParam(param: ru.Symbol,
+                            defaultOption: Option[Any],
+                            firstDefaultParam: Option[String],
+                            usedVarNames: => Set[String],
+                            sbDef: mutable.StringBuilder,
+                            sbBody: mutable.StringBuilder): Option[String] = {
+    val pName = param.name.toString
+    if (!PythonInterop.isGoodPythonName(pName)) {
+      throw new IllegalArgumentException(s"The parameter name '$pName' cannot be used in Python. Consider" +
+        s"an alternate name, or making a separate private passthrough method to wrap this.")
+    }
+    val trans = PythonInterop.getTranslator(param.typeSignature)
+    val hint = trans.typeHint
+    val litOption = defaultOption.map(d => trans.literalUnsafe(d))
+    if (firstDefaultParam.isDefined && litOption.isEmpty) {
+      throw new UnsupportedOperationException(s"No literal default encodable for parameter $pName but one " +
+        s"was previously established for parameter ${firstDefaultParam.get}")
+    }
+    // Append the parameter to the definition list, optionally with a default value.
+    sbDef.append(s", $pName${hint.map(": " + _).getOrElse("")}${litOption.map(" = " + _).getOrElse("")}")
+    // Register the default parameter we just did, if we did, so we have a sensible error message to give if needed.
+    // Add the conversion code to the method body, if needed.
+    if (!trans.isPassthrough) {
+      // We need the conversion code. Just replace the original variable.
+      sbBody.append(indent(s"$pName = ${trans.wrapInput(pName, usedVarNames)}"))
+      sbBody.append("\n")
+    }
+    if (firstDefaultParam.isDefined) firstDefaultParam else litOption.map(_ => pName)
+  }
+
+  /**
+    * Generates code for a single method.
+    *
+    * @param myType          The type for which methods are being generated.
+    * @param method          The specific method being generated inside this function.
+    * @param wrapObj         The [[wrap]] annotation that was attached to this method.
+    * @param usedMemberNames Members of this class. This method should add the Python method name to it at the end.
+    * @param sbDef           As a post condition this contains the `def` section of the Python method.
+    * @param sbBody          As a post condition this contains the body of the Python method.
+    */
+  private def generateMethod(myType: ru.Type,
+                             method: ru.MethodSymbol,
+                             wrapObj: wrap,
+                             usedMemberNames: mutable.Set[String],
+                             sbDef: mutable.StringBuilder,
+                             sbBody: mutable.StringBuilder): Unit = {
+    // The JVM object is not available in @classmethod objects in Python according to typical wrapping.
+    // On the other hand, methods in Scala itself aren't really static.
+    require(!method.isStatic, s"Cannot wrap method $method. It is static.")
+    // Doing something clever __init__ might be possible in future. Right now though, not supported.
+    require(!method.isConstructor, s"Cannot wrap constructor $method.")
+
+    val pyName = wrapObj.overrideNameOption.getOrElse(method.name.toString)
+    if (usedMemberNames.contains(pyName)) {
+      throw new UnsupportedOperationException(s"Method ${method.name} would result in a name collision in the" +
+        "resulting Python class")
+    }
+    if (!PythonInterop.isGoodPythonName(pyName)) {
+      throw new IllegalArgumentException(s"The method name '$pyName' cannot be used in Python. Consider specifying " +
+        s"an alternate name in the wrap.")
+    }
+
+    val (params, defaults) = WrapUtils.getParamsDefaultsForMethod(myType, method, Some(this))
+
+    sbDef.clear()
+    sbBody.clear()
+    if (params.isEmpty && wrapObj.asProperty)
+      sbDef.append("@property\n")
+    sbDef.append(s"def $pyName(self")
+
+    var firstDefaultParam: Option[String] = None
+    // These are the used local variable names, as opposed to member names.
+    val usedVarNames: Set[String] = Set(params.map(_.name.toString): _*)
+    for (pIdx <- params.indices) {
+      // Add the parameter both to the function defintiion, as well as doing any conversion code necessary
+      // in the body.
+      firstDefaultParam = generateParam(params(pIdx), defaults(pIdx), firstDefaultParam, usedVarNames, sbDef, sbBody)
+
+
+    }
+    // All the inputs should be ready. Process the output.
+    val trans = PythonInterop.getTranslator(method.returnType)
+    // Add the type hint for the output in the deinfition.
+    sbDef.append(s")${trans.typeHint.map(" -> " + _).getOrElse("")}:\n")
+    // Add the return value to the end of the body.
+    val eval = PythonInterop.select("self._java_obj", method.name.toString) + '(' +
+      params.map(_.name).mkString(", ") + ')'
+    sbBody.append(indent(s"return ${trans.wrapOutput(eval, usedVarNames)}"))
+    sbBody.append("\n")
+    usedMemberNames += pyName
   }
 }
 
@@ -494,8 +602,8 @@ trait RWrappable[T] extends BaseWrappable[T] {
        |$rDocString
        |$rFuncName <- function(
        |    x,
-       |${indent(rParamsArgs, 1)}
-       |${indent(rExtraInitLines, 1)}
+       |${indent(rParamsArgs)}
+       |${indent(rExtraInitLines)}
        |    uid=random_string("${rFuncName}"),
        |    ...)
        |{
@@ -509,7 +617,7 @@ trait RWrappable[T] extends BaseWrappable[T] {
        |    mod <- invoke_new(sc, scala_class, uid = uid)
        |    mod_parameterized <- mod %>%
        |${indent(rSetterLines, 2)}
-       |${indent(rExtraBodyLines, 1)}
+       |${indent(rExtraBodyLines)}
        |    if (only.model)
        |        return(sparklyr:::new_ml_transformer(transformer, class=scala_transformer_class))
        |    transformed <- invoke(transformer, "transform", df)
@@ -530,4 +638,9 @@ trait RWrappable[T] extends BaseWrappable[T] {
 
 trait TypeWrappable[T] extends PythonWrappable[T] with RWrappable[T] with DotnetWrappable[T]
 
-trait Wrappable extends TypeWrappable[Params]
+trait Wrappable extends TypeWrappable[Params] {
+  private[ml] override def wrappingType: ru.TypeTag[Params] = ru.typeTag
+
+  protected override def pyInitFuncJavaBridge(): String = ""
+
+}
