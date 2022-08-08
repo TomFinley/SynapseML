@@ -1,0 +1,45 @@
+
+# Copyright (C) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See LICENSE in project root for information.
+
+
+
+#' ImageSetAugmenter
+#'
+#' @param flipLeftRight Symmetric Left-Right
+#' @param flipUpDown Symmetric Up-Down
+#' @param inputCol The name of the input column
+#' @param outputCol The name of the output column
+#' @export
+
+ml_image_set_augmenter <- function(
+    x,
+    flipLeftRight=TRUE,
+    flipUpDown=FALSE,
+    inputCol="image",
+    outputCol="ImageSetAugmenter_0caf460617a3_output",
+    only.model=FALSE,
+    uid=random_string("ml_image_set_augmenter"),
+    ...)
+{
+    if (unfit.model) {
+        sc <- x
+    } else {
+        df <- spark_dataframe(x)
+        sc <- spark_connection(df)
+    }
+    scala_class <- "com.microsoft.azure.synapse.ml.opencv.ImageSetAugmenter"
+    mod <- invoke_new(sc, scala_class, uid = uid)
+    mod_parameterized <- mod %>%
+        invoke("setFlipLeftRight", as.logical(flipLeftRight)) %>%
+        invoke("setFlipUpDown", as.logical(flipUpDown)) %>%
+        invoke("setInputCol", inputCol) %>%
+        invoke("setOutputCol", outputCol)
+    
+    transformer <- mod_parameterized
+    scala_transformer_class <- scala_class
+    if (only.model)
+        return(sparklyr:::new_ml_transformer(transformer, class=scala_transformer_class))
+    transformed <- invoke(transformer, "transform", df)
+    sdf_register(transformed)
+}

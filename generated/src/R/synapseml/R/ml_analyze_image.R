@@ -1,0 +1,84 @@
+
+# Copyright (C) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License. See LICENSE in project root for information.
+
+
+
+#' AnalyzeImage
+#'
+#' @param concurrency max number of concurrent calls
+#' @param concurrentTimeout max number seconds to wait on futures if concurrency >= 1
+#' @param details what visual feature types to return
+#' @param errorCol column to hold http errors
+#' @param handler Which strategy to use when handling requests
+#' @param imageBytes bytestream of the image to use
+#' @param imageUrl the url of the image to use
+#' @param language the language of the response (en if none given)
+#' @param outputCol The name of the output column
+#' @param subscriptionKey the API key to use
+#' @param timeout number of seconds to wait before closing the connection
+#' @param url Url of the service
+#' @param visualFeatures what visual feature types to return
+#' @export
+
+ml_analyze_image <- function(
+    x,
+    concurrency=1,
+    concurrentTimeout=NULL,
+    details=NULL,
+    detailsCol=NULL,
+    errorCol="AnalyzeImage_d8d651ecc9fd_error",
+    handler=NULL,
+    imageBytes=NULL,
+    imageBytesCol=NULL,
+    imageUrl=NULL,
+    imageUrlCol=NULL,
+    language=NULL,
+    languageCol=NULL,
+    outputCol="AnalyzeImage_d8d651ecc9fd_output",
+    subscriptionKey=NULL,
+    subscriptionKeyCol=NULL,
+    timeout=60.0,
+    url=NULL,
+    visualFeatures=NULL,
+    visualFeaturesCol=NULL,
+    only.model=FALSE,
+    uid=random_string("ml_analyze_image"),
+    ...)
+{
+    if (unfit.model) {
+        sc <- x
+    } else {
+        df <- spark_dataframe(x)
+        sc <- spark_connection(df)
+    }
+    scala_class <- "com.microsoft.azure.synapse.ml.cognitive.AnalyzeImage"
+    mod <- invoke_new(sc, scala_class, uid = uid)
+    mod_parameterized <- mod %>%
+        invoke("setConcurrency", as.integer(concurrency)) %>%
+        invoke("setConcurrentTimeout", as.double(concurrentTimeout)) %>%
+        invoke("setDetailsCol", detailsCol) %>%
+        invoke("setDetails", details) %>%
+        invoke("setErrorCol", errorCol) %>%
+        invoke("setHandler", handler) %>%
+        invoke("setImageBytesCol", imageBytesCol) %>%
+        invoke("setImageBytes", imageBytes) %>%
+        invoke("setImageUrlCol", imageUrlCol) %>%
+        invoke("setImageUrl", imageUrl) %>%
+        invoke("setLanguageCol", languageCol) %>%
+        invoke("setLanguage", language) %>%
+        invoke("setOutputCol", outputCol) %>%
+        invoke("setSubscriptionKeyCol", subscriptionKeyCol) %>%
+        invoke("setSubscriptionKey", subscriptionKey) %>%
+        invoke("setTimeout", as.double(timeout)) %>%
+        invoke("setUrl", url) %>%
+        invoke("setVisualFeaturesCol", visualFeaturesCol) %>%
+        invoke("setVisualFeatures", visualFeatures)
+    
+    transformer <- mod_parameterized
+    scala_transformer_class <- scala_class
+    if (only.model)
+        return(sparklyr:::new_ml_transformer(transformer, class=scala_transformer_class))
+    transformed <- invoke(transformer, "transform", df)
+    sdf_register(transformed)
+}
