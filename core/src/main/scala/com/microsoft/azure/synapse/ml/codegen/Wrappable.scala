@@ -61,6 +61,21 @@ trait BaseWrappable[T] extends Params {
 
   }
 
+  protected def needsJvmBridge: Boolean = true
+
+  protected def paramHasSetter(p: Param[_]): Boolean = {
+    val methodName = "set" + p.name.capitalize
+    val symbol = wrappingType.tpe.member(ru.TermName(methodName))
+    // TODO: Consider making this a bit more robust. Right now it doesn't check anything about parameters,
+    //  return types, etc.
+    symbol.isMethod && symbol.isPublic && !symbol.isStatic
+  }
+
+  protected def paramHasGetter(p: Param[_]): Boolean = {
+    val methodName = "get" + p.name.capitalize
+    val symbol = wrappingType.tpe.member(ru.TermName(methodName))
+    symbol.isMethod && symbol.isPublic && !symbol.isStatic
+  }
 }
 
 trait PythonWrappable[T] extends BaseWrappable[T] {
@@ -179,7 +194,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
   protected def pyParamsDefaults: String =
     thisStage.params.flatMap(pyParamDefault(_)).mkString("\n")
 
-  protected def pyParamSetter(p: Param[_]): String = {
+  protected def pyParamSetter(p: Param[_]): Option[String] = {
     val capName = p.name.capitalize
     val docString =
       s"""|"\""
@@ -189,7 +204,8 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
           |""".stripMargin
     // scalastyle:off line.size.limit
     p match {
-      case _: ServiceParam[_] =>
+      case pp if !paramHasSetter(pp) => None
+      case _: ServiceParam[_] => Some(
         s"""|def set$capName(self, value):
             |${indent(docString)}
             |    if isinstance(value, list):
@@ -201,19 +217,19 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
             |${indent(docString)}
             |    self._java_obj = self._java_obj.set${capName}Col(value)
             |    return self
-            |""".stripMargin
-      case _ =>
+            |""".stripMargin)
+      case _ => Some(
         s"""|def set${p.name.capitalize}(self, value):
             |${indent(docString)}
             |    self._set(${p.name}=value)
             |    return self
-            |""".stripMargin
+            |""".stripMargin)
     }
     // scalastyle:on line.size.limit
   }
 
   protected def pyParamsSetters: String =
-    thisStage.params.map(pyParamSetter).mkString("\n")
+    thisStage.params.flatMap(pyParamSetter).mkString("\n")
 
   protected def pyExtraEstimatorMethods: String = {
     thisStage match {
@@ -254,7 +270,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
     }
   }
 
-  protected def pyParamGetter(p: Param[_]): String = {
+  protected def pyParamGetter(p: Param[_]): Option[String] = {
     val capName = p.name.capitalize
     val docString =
       s"""|"\""
@@ -263,37 +279,38 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
           |"\""
           |""".stripMargin
     p match {
-      case _: DataFrameParam =>
+      case pp if !paramHasGetter(pp) => None
+      case _: DataFrameParam => Some(
         s"""|
             |def get$capName(self):
             |${indent(docString)}
             |    ctx = SparkContext._active_spark_context
             |    sql_ctx = SQLContext.getOrCreate(ctx)
             |    return DataFrame(self._java_obj.get$capName(), sql_ctx)
-            |""".stripMargin
-      case _: TransformerParam | _: EstimatorParam | _: PipelineStageParam =>
+            |""".stripMargin)
+      case _: TransformerParam | _: EstimatorParam | _: PipelineStageParam => Some(
         s"""|
             |def get$capName(self):
             |${indent(docString)}
             |    return JavaParams._from_java(self._java_obj.get$capName())
-            |""".stripMargin
-      case _: ServiceParam[_] =>
+            |""".stripMargin)
+      case _: ServiceParam[_] => Some(
         s"""|
             |def get$capName(self):
             |${indent(docString)}
             |    return self._java_obj.get$capName()
-            |""".stripMargin
-      case _ =>
+            |""".stripMargin)
+      case _ => Some(
         s"""|
             |def get$capName(self):
             |${indent(docString)}
             |    return self.getOrDefault(self.${p.name})
-            |""".stripMargin
+            |""".stripMargin)
     }
   }
 
   protected def pyParamsGetters: String =
-    thisStage.params.map(pyParamGetter).mkString("\n")
+    thisStage.params.flatMap(pyParamGetter).mkString("\n")
 
   def pyInitFunc(): String = {
     s"""
@@ -318,7 +335,7 @@ trait PythonWrappable[T] extends BaseWrappable[T] {
        |        for k,v in kwargs.items():
        |            if v is not None:
        |                getattr(self, "set" + k[0].upper() + k[1:])(v)
-       |${indent(pyInitFuncJavaBridge())}
+       |${if (needsJvmBridge) indent(pyInitFuncJavaBridge()) else ""}
        |""".stripMargin
 
   }
@@ -533,7 +550,7 @@ trait RWrappable[T] extends BaseWrappable[T] {
   protected def rParamsArgs: String =
     thisStage.params.map(rParamArg(_) + ",\n").mkString("")
 
-  protected def rParamArg[T](p: Param[T]): String = {
+  protected def rParamArg[V](p: Param[V]): String = {
     (p, thisStage.getDefault(p)) match {
       case (_: ServiceParam[_], _) =>
         s"${p.name}=NULL,\n${p.name}Col=NULL"
@@ -638,9 +655,17 @@ trait RWrappable[T] extends BaseWrappable[T] {
 
 trait TypeWrappable[T] extends PythonWrappable[T] with RWrappable[T] with DotnetWrappable[T]
 
+/**
+  * A legacy wrappable to maintain the old behavior. If possible consider using [[TypeWrappable]].
+  */
 trait Wrappable extends TypeWrappable[Params] {
   private[ml] override def wrappingType: ru.TypeTag[Params] = ru.typeTag
 
   protected override def pyInitFuncJavaBridge(): String = ""
 
+  override def needsJvmBridge: Boolean = false
+
+  override def paramHasGetter(p: Param[_]): Boolean = true
+
+  override def paramHasSetter(p: Param[_]): Boolean = true
 }

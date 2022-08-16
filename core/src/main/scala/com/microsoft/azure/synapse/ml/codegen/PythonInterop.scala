@@ -1,6 +1,8 @@
 package com.microsoft.azure.synapse.ml.codegen
 
+import scala.annotation.tailrec
 import scala.reflect.runtime.{universe => ru}
+import scala.util.matching.Regex
 
 /**
   * Facilities for value interop between Python and Scala/Java objects across the py4j bridge used by Spark.
@@ -183,13 +185,18 @@ object PythonInterop {
   }
 
   private def unusedTempVar(usedSymbols: Set[String]): String = {
-    if (!usedSymbols.contains("x")) {
-      "x"
-    } else {
-      var i = 1
-      while (usedSymbols.contains("x" + i)) i += 1
-      "x" + i
+    @tailrec
+    def findFree(i: Int): Int = {
+      if (usedSymbols.contains("x" + i))
+        findFree(i + 1)
+      else
+        i
     }
+
+    if (!usedSymbols.contains("x"))
+      "x"
+    else
+      "x" + findFree(1)
   }
 
   private final class SeqTranslator(myType: ru.Type) extends Translator[Seq[_]] {
@@ -219,7 +226,7 @@ object PythonInterop {
           if (sb.length > 1)
             sb.append(", ")
           if (e.isEmpty)
-          // In Scala returns are disfavored. Is there a better way though?
+          // In Scala returns are disfavored. The sort of tail-rec based solution is so much worse though somehow.
             return None
           sb.append(e.get)
         }
@@ -351,7 +358,7 @@ object PythonInterop {
     // The underscore of course is used in the REPL.
     private val SoftKW = Set("_", "case", "match")
 
-    private val IdentifierRegex = "^[_A-Za-z][_0-9A-Za-z]*$".r
+    private val IdentifierRegex: Regex = "^[_A-Za-z][_0-9A-Za-z]*$".r
 
     def isGoodPythonName(name: String): Boolean = !KW.contains(name) && IdentifierRegex.findFirstIn(name).isDefined
   }

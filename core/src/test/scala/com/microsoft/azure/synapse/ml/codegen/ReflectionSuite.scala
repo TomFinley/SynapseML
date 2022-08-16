@@ -40,22 +40,18 @@ class ReflectionSuite extends FunSuite {
     import ReflectionSuite.{WrapExtractTestClass => C}
     val testType = ru.typeOf[C]
 
-    def localTest(methodName: String, expectedWrap: wrap): Unit = {
+    implicit def implicitConv[wrap](w: wrap): Option[wrap] = Option(w)
+    def localTest(methodName: String, expectedWrap: Option[wrap]): Unit = {
       val member = testType.member(ru.TermName(methodName))
       assert(member.isMethod)
       val actualWrap = WrapUtils.getWrapForMethod(member.asMethod)
-      if (expectedWrap == null) {
-        assert(actualWrap.isEmpty)
-      } else {
-        assert(actualWrap.isDefined)
-        assertResult(expectedWrap)(actualWrap.get)
-      }
+      assertResult(expectedWrap)(actualWrap)
     }
 
     localTest("a0", wrap(asProperty = true, "miles"))
     localTest("a1", wrap(asProperty = true))
     localTest("a2", wrap())
-    localTest("a4", null)
+    localTest("a4", None)
 
     def localTestExcept(methodName: String): Unit = {
       val member = testType.member(ru.TermName(methodName))
