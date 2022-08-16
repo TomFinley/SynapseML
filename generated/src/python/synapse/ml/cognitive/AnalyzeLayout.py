@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -88,7 +90,7 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeLayout_7b070ea68d02_error",
+        errorCol="AnalyzeLayout_56c90dc3c3a3_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -99,7 +101,7 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeLayout_7b070ea68d02_output",
+        outputCol="AnalyzeLayout_56c90dc3c3a3_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -118,10 +120,10 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AnalyzeLayout_7b070ea68d02_error")
+        self._setDefault(errorCol="AnalyzeLayout_56c90dc3c3a3_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="AnalyzeLayout_7b070ea68d02_output")
+        self._setDefault(outputCol="AnalyzeLayout_56c90dc3c3a3_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -141,7 +143,7 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeLayout_7b070ea68d02_error",
+        errorCol="AnalyzeLayout_56c90dc3c3a3_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -152,7 +154,7 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeLayout_7b070ea68d02_output",
+        outputCol="AnalyzeLayout_56c90dc3c3a3_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -549,6 +551,7 @@ class AnalyzeLayout(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

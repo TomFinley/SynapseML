@@ -17,7 +17,7 @@ ml_superpixel_transformer <- function(
     cellSize=16.0,
     inputCol=NULL,
     modifier=130.0,
-    outputCol="SuperpixelTransformer_71b6d7cac1cb_output",
+    outputCol="SuperpixelTransformer_37e156ff6ac7_output",
     only.model=FALSE,
     uid=random_string("ml_superpixel_transformer"),
     ...)

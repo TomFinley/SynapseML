@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -60,11 +62,11 @@ class GroupFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GroupFaces_0e12a6f39558_error",
+        errorCol="GroupFaces_f20c35425f5c_error",
         faceIds=None,
         faceIdsCol=None,
         handler=None,
-        outputCol="GroupFaces_0e12a6f39558_output",
+        outputCol="GroupFaces_f20c35425f5c_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -76,8 +78,8 @@ class GroupFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="GroupFaces_0e12a6f39558_error")
-        self._setDefault(outputCol="GroupFaces_0e12a6f39558_output")
+        self._setDefault(errorCol="GroupFaces_f20c35425f5c_error")
+        self._setDefault(outputCol="GroupFaces_f20c35425f5c_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -94,11 +96,11 @@ class GroupFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GroupFaces_0e12a6f39558_error",
+        errorCol="GroupFaces_f20c35425f5c_error",
         faceIds=None,
         faceIdsCol=None,
         handler=None,
-        outputCol="GroupFaces_0e12a6f39558_output",
+        outputCol="GroupFaces_f20c35425f5c_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -295,6 +297,7 @@ class GroupFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

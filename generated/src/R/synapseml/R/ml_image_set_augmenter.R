@@ -17,7 +17,7 @@ ml_image_set_augmenter <- function(
     flipLeftRight=TRUE,
     flipUpDown=FALSE,
     inputCol="image",
-    outputCol="ImageSetAugmenter_0caf460617a3_output",
+    outputCol="ImageSetAugmenter_5e21009d6724_output",
     only.model=FALSE,
     uid=random_string("ml_image_set_augmenter"),
     ...)

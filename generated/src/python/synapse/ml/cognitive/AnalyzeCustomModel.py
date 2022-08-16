@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -85,7 +87,7 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeCustomModel_749faff033bb_error",
+        errorCol="AnalyzeCustomModel_6cd859bed1e4_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -98,7 +100,7 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         modelIdCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeCustomModel_749faff033bb_output",
+        outputCol="AnalyzeCustomModel_6cd859bed1e4_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -113,10 +115,10 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AnalyzeCustomModel_749faff033bb_error")
+        self._setDefault(errorCol="AnalyzeCustomModel_6cd859bed1e4_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="AnalyzeCustomModel_749faff033bb_output")
+        self._setDefault(outputCol="AnalyzeCustomModel_6cd859bed1e4_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -136,7 +138,7 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeCustomModel_749faff033bb_error",
+        errorCol="AnalyzeCustomModel_6cd859bed1e4_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -149,7 +151,7 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         modelIdCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeCustomModel_749faff033bb_output",
+        outputCol="AnalyzeCustomModel_6cd859bed1e4_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -516,6 +518,7 @@ class AnalyzeCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

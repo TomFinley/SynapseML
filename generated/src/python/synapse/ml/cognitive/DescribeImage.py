@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -69,7 +71,7 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DescribeImage_34864ea7d8bb_error",
+        errorCol="DescribeImage_3eb378454852_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -79,7 +81,7 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         languageCol=None,
         maxCandidates=None,
         maxCandidatesCol=None,
-        outputCol="DescribeImage_34864ea7d8bb_output",
+        outputCol="DescribeImage_3eb378454852_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -91,8 +93,8 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DescribeImage_34864ea7d8bb_error")
-        self._setDefault(outputCol="DescribeImage_34864ea7d8bb_output")
+        self._setDefault(errorCol="DescribeImage_3eb378454852_error")
+        self._setDefault(outputCol="DescribeImage_3eb378454852_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,7 +111,7 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DescribeImage_34864ea7d8bb_error",
+        errorCol="DescribeImage_3eb378454852_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -119,7 +121,7 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         languageCol=None,
         maxCandidates=None,
         maxCandidatesCol=None,
-        outputCol="DescribeImage_34864ea7d8bb_output",
+        outputCol="DescribeImage_3eb378454852_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -394,6 +396,7 @@ class DescribeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

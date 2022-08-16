@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -69,11 +71,11 @@ class DetectFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DetectFace_ca6208c75c64_error",
+        errorCol="DetectFace_d87cf28dfe8f_error",
         handler=None,
         imageUrl=None,
         imageUrlCol=None,
-        outputCol="DetectFace_ca6208c75c64_output",
+        outputCol="DetectFace_d87cf28dfe8f_output",
         returnFaceAttributes=None,
         returnFaceAttributesCol=None,
         returnFaceId=None,
@@ -91,8 +93,8 @@ class DetectFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DetectFace_ca6208c75c64_error")
-        self._setDefault(outputCol="DetectFace_ca6208c75c64_output")
+        self._setDefault(errorCol="DetectFace_d87cf28dfe8f_error")
+        self._setDefault(outputCol="DetectFace_d87cf28dfe8f_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,11 +111,11 @@ class DetectFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DetectFace_ca6208c75c64_error",
+        errorCol="DetectFace_d87cf28dfe8f_error",
         handler=None,
         imageUrl=None,
         imageUrlCol=None,
-        outputCol="DetectFace_ca6208c75c64_output",
+        outputCol="DetectFace_d87cf28dfe8f_output",
         returnFaceAttributes=None,
         returnFaceAttributesCol=None,
         returnFaceId=None,
@@ -394,6 +396,7 @@ class DetectFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

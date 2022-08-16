@@ -13,7 +13,7 @@
 ml_unroll_image <- function(
     x,
     inputCol="image",
-    outputCol="UnrollImage_2463bb8d6322_output",
+    outputCol="UnrollImage_4d530895936b_output",
     only.model=FALSE,
     uid=random_string("ml_unroll_image"),
     ...)

@@ -18,7 +18,7 @@ ml_knn <- function(
     featuresCol="features",
     k=5,
     leafSize=50,
-    outputCol="KNN_a76b4b78e0f6_output",
+    outputCol="KNN_a8686cc77f13_output",
     valuesCol="values",
     unfit.model=FALSE,
     only.model=FALSE,

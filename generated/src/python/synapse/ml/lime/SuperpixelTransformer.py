@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -46,7 +48,7 @@ class SuperpixelTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         cellSize=16.0,
         inputCol=None,
         modifier=130.0,
-        outputCol="SuperpixelTransformer_8557812ea40f_output"
+        outputCol="SuperpixelTransformer_80ae7644fd4f_output"
         ):
         super(SuperpixelTransformer, self).__init__()
         if java_obj is None:
@@ -55,7 +57,7 @@ class SuperpixelTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
             self._java_obj = java_obj
         self._setDefault(cellSize=16.0)
         self._setDefault(modifier=130.0)
-        self._setDefault(outputCol="SuperpixelTransformer_8557812ea40f_output")
+        self._setDefault(outputCol="SuperpixelTransformer_80ae7644fd4f_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -72,7 +74,7 @@ class SuperpixelTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         cellSize=16.0,
         inputCol=None,
         modifier=130.0,
-        outputCol="SuperpixelTransformer_8557812ea40f_output"
+        outputCol="SuperpixelTransformer_80ae7644fd4f_output"
         ):
         """
         Set the (keyword only) parameters
@@ -165,5 +167,6 @@ class SuperpixelTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
 
     
 
+    
     
         

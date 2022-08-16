@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -71,7 +73,7 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         concurrentTimeout=None,
         detectOrientation=None,
         detectOrientationCol=None,
-        errorCol="OCR_0055349de42b_error",
+        errorCol="OCR_b54c66ce828c_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -79,7 +81,7 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="OCR_0055349de42b_output",
+        outputCol="OCR_b54c66ce828c_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -91,8 +93,8 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="OCR_0055349de42b_error")
-        self._setDefault(outputCol="OCR_0055349de42b_output")
+        self._setDefault(errorCol="OCR_b54c66ce828c_error")
+        self._setDefault(outputCol="OCR_b54c66ce828c_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -111,7 +113,7 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         concurrentTimeout=None,
         detectOrientation=None,
         detectOrientationCol=None,
-        errorCol="OCR_0055349de42b_error",
+        errorCol="OCR_b54c66ce828c_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -119,7 +121,7 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="OCR_0055349de42b_output",
+        outputCol="OCR_b54c66ce828c_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -394,6 +396,7 @@ class OCR(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -58,7 +60,7 @@ class TextToSpeech(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
     def __init__(
         self,
         java_obj=None,
-        errorCol="TextToSpeech_c6864a51d68f_errors",
+        errorCol="TextToSpeech_82a8aa830b4a_errors",
         language=None,
         languageCol=None,
         locale=None,
@@ -79,7 +81,7 @@ class TextToSpeech(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.cognitive.TextToSpeech", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(errorCol="TextToSpeech_c6864a51d68f_errors")
+        self._setDefault(errorCol="TextToSpeech_82a8aa830b4a_errors")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -93,7 +95,7 @@ class TextToSpeech(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
     @keyword_only
     def setParams(
         self,
-        errorCol="TextToSpeech_c6864a51d68f_errors",
+        errorCol="TextToSpeech_82a8aa830b4a_errors",
         language=None,
         languageCol=None,
         locale=None,
@@ -340,6 +342,7 @@ class TextToSpeech(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

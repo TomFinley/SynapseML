@@ -21,7 +21,7 @@ ml_image_featurizer <- function(
     dropNa=TRUE,
     inputCol=NULL,
     layerNames=NULL,
-    outputCol="ImageFeaturizer_1f1dd0f4c65b_output",
+    outputCol="ImageFeaturizer_99a3755622d6_output",
     only.model=FALSE,
     uid=random_string("ml_image_featurizer"),
     ...)

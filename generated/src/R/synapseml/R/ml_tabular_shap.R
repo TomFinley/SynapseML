@@ -26,7 +26,7 @@ ml_tabular_shap <- function(
     metricsCol="r2",
     model=NULL,
     numSamples=NULL,
-    outputCol="TabularSHAP_dd0da21e09cf__output",
+    outputCol="TabularSHAP_f1a5753acf07__output",
     targetClasses=c(),
     targetClassesCol=NULL,
     targetCol="probability",

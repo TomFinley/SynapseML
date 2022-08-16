@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -72,13 +74,13 @@ class EntityDetector(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="EntityDetector_f61e7b85cdfa_error",
+        errorCol="EntityDetector_bbf2c6b0ba74_error",
         handler=None,
         language=None,
         languageCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="EntityDetector_f61e7b85cdfa_output",
+        outputCol="EntityDetector_bbf2c6b0ba74_output",
         showStats=None,
         showStatsCol=None,
         stringIndexType=None,
@@ -96,8 +98,8 @@ class EntityDetector(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="EntityDetector_f61e7b85cdfa_error")
-        self._setDefault(outputCol="EntityDetector_f61e7b85cdfa_output")
+        self._setDefault(errorCol="EntityDetector_bbf2c6b0ba74_error")
+        self._setDefault(outputCol="EntityDetector_bbf2c6b0ba74_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -114,13 +116,13 @@ class EntityDetector(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="EntityDetector_f61e7b85cdfa_error",
+        errorCol="EntityDetector_bbf2c6b0ba74_error",
         handler=None,
         language=None,
         languageCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="EntityDetector_f61e7b85cdfa_output",
+        outputCol="EntityDetector_bbf2c6b0ba74_output",
         showStats=None,
         showStatsCol=None,
         stringIndexType=None,
@@ -427,6 +429,7 @@ class EntityDetector(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.recommendation.RecommendationIndexerModel import RecommendationIndexerModel
 
 @inherit_doc
@@ -194,5 +196,6 @@ class RecommendationIndexer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

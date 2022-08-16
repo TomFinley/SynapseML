@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -66,7 +68,7 @@ class TextSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="TextSHAP_1fa19266bcfb__output",
+        outputCol="TextSHAP_dd005a0fb1f6__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability",
@@ -79,7 +81,7 @@ class TextSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
             self._java_obj = java_obj
         self._setDefault(infWeight=1.0E+8)
         self._setDefault(metricsCol="r2")
-        self._setDefault(outputCol="TextSHAP_1fa19266bcfb__output")
+        self._setDefault(outputCol="TextSHAP_dd005a0fb1f6__output")
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
         self._setDefault(tokensCol="tokens")
@@ -101,7 +103,7 @@ class TextSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="TextSHAP_1fa19266bcfb__output",
+        outputCol="TextSHAP_dd005a0fb1f6__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability",
@@ -294,5 +296,6 @@ class TextSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
 
     
 
+    
     
         

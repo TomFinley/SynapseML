@@ -14,7 +14,7 @@
 
 ml_train_regressor <- function(
     x,
-    featuresCol="TrainRegressor_535d9a90a9fc_features",
+    featuresCol="TrainRegressor_3b7ad7c39704_features",
     labelCol=NULL,
     model=NULL,
     numFeatures=0,

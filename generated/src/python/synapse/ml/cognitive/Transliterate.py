@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -72,13 +74,13 @@ class Transliterate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Transliterate_fa572ed308b1_error",
+        errorCol="Transliterate_23944671473b_error",
         fromScript=None,
         fromScriptCol=None,
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="Transliterate_fa572ed308b1_output",
+        outputCol="Transliterate_23944671473b_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -96,8 +98,8 @@ class Transliterate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="Transliterate_fa572ed308b1_error")
-        self._setDefault(outputCol="Transliterate_fa572ed308b1_output")
+        self._setDefault(errorCol="Transliterate_23944671473b_error")
+        self._setDefault(outputCol="Transliterate_23944671473b_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -114,13 +116,13 @@ class Transliterate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Transliterate_fa572ed308b1_error",
+        errorCol="Transliterate_23944671473b_error",
         fromScript=None,
         fromScriptCol=None,
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="Transliterate_fa572ed308b1_output",
+        outputCol="Transliterate_23944671473b_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -427,6 +429,7 @@ class Transliterate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

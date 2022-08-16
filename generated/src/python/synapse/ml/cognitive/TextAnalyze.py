@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -94,13 +96,13 @@ class TextAnalyze(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         entityLinkingTasks=[],
         entityRecognitionPiiTasks=[],
         entityRecognitionTasks=[],
-        errorCol="TextAnalyze_37712f1f22b7_error",
+        errorCol="TextAnalyze_710a4770ce09_error",
         initialPollingDelay=300,
         keyPhraseExtractionTasks=[],
         language=None,
         languageCol=None,
         maxPollingRetries=1000,
-        outputCol="TextAnalyze_37712f1f22b7_output",
+        outputCol="TextAnalyze_710a4770ce09_output",
         pollingDelay=300,
         sentimentAnalysisTasks=[],
         subscriptionKey=None,
@@ -121,11 +123,11 @@ class TextAnalyze(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         self._setDefault(entityLinkingTasks=[])
         self._setDefault(entityRecognitionPiiTasks=[])
         self._setDefault(entityRecognitionTasks=[])
-        self._setDefault(errorCol="TextAnalyze_37712f1f22b7_error")
+        self._setDefault(errorCol="TextAnalyze_710a4770ce09_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(keyPhraseExtractionTasks=[])
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="TextAnalyze_37712f1f22b7_output")
+        self._setDefault(outputCol="TextAnalyze_710a4770ce09_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(sentimentAnalysisTasks=[])
         self._setDefault(suppressMaxRetriesExceededException=False)
@@ -149,13 +151,13 @@ class TextAnalyze(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         entityLinkingTasks=[],
         entityRecognitionPiiTasks=[],
         entityRecognitionTasks=[],
-        errorCol="TextAnalyze_37712f1f22b7_error",
+        errorCol="TextAnalyze_710a4770ce09_error",
         initialPollingDelay=300,
         keyPhraseExtractionTasks=[],
         language=None,
         languageCol=None,
         maxPollingRetries=1000,
-        outputCol="TextAnalyze_37712f1f22b7_output",
+        outputCol="TextAnalyze_710a4770ce09_output",
         pollingDelay=300,
         sentimentAnalysisTasks=[],
         subscriptionKey=None,
@@ -527,6 +529,7 @@ class TextAnalyze(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

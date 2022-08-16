@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -85,7 +87,7 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeIDDocuments_dba1762f149b_error",
+        errorCol="AnalyzeIDDocuments_c1d91433926f_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -96,7 +98,7 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeIDDocuments_dba1762f149b_output",
+        outputCol="AnalyzeIDDocuments_c1d91433926f_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -113,10 +115,10 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AnalyzeIDDocuments_dba1762f149b_error")
+        self._setDefault(errorCol="AnalyzeIDDocuments_c1d91433926f_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="AnalyzeIDDocuments_dba1762f149b_output")
+        self._setDefault(outputCol="AnalyzeIDDocuments_c1d91433926f_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -136,7 +138,7 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeIDDocuments_dba1762f149b_error",
+        errorCol="AnalyzeIDDocuments_c1d91433926f_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -147,7 +149,7 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeIDDocuments_dba1762f149b_output",
+        outputCol="AnalyzeIDDocuments_c1d91433926f_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -516,6 +518,7 @@ class AnalyzeIDDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

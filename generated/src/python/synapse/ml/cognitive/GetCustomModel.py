@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,13 +65,13 @@ class GetCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GetCustomModel_a5f4cf27b7a0_error",
+        errorCol="GetCustomModel_73d44a564698_error",
         handler=None,
         includeKeys=None,
         includeKeysCol=None,
         modelId=None,
         modelIdCol=None,
-        outputCol="GetCustomModel_a5f4cf27b7a0_output",
+        outputCol="GetCustomModel_73d44a564698_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -81,8 +83,8 @@ class GetCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="GetCustomModel_a5f4cf27b7a0_error")
-        self._setDefault(outputCol="GetCustomModel_a5f4cf27b7a0_output")
+        self._setDefault(errorCol="GetCustomModel_73d44a564698_error")
+        self._setDefault(outputCol="GetCustomModel_73d44a564698_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,13 +101,13 @@ class GetCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GetCustomModel_a5f4cf27b7a0_error",
+        errorCol="GetCustomModel_73d44a564698_error",
         handler=None,
         includeKeys=None,
         includeKeysCol=None,
         modelId=None,
         modelIdCol=None,
-        outputCol="GetCustomModel_a5f4cf27b7a0_output",
+        outputCol="GetCustomModel_73d44a564698_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -328,6 +330,7 @@ class GetCustomModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTra
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

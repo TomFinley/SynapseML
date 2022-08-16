@@ -25,7 +25,7 @@ ml_text_shap <- function(
     metricsCol="r2",
     model=NULL,
     numSamples=NULL,
-    outputCol="TextSHAP_851de170805e__output",
+    outputCol="TextSHAP_b1cc740ca87a__output",
     targetClasses=c(),
     targetClassesCol=NULL,
     targetCol="probability",

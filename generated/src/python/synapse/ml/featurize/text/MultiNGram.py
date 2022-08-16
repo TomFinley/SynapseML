@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -42,14 +44,14 @@ class MultiNGram(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         java_obj=None,
         inputCol=None,
         lengths=None,
-        outputCol="MultiNGram_e55ca401cc0e_output"
+        outputCol="MultiNGram_e4e83a5ed80f_output"
         ):
         super(MultiNGram, self).__init__()
         if java_obj is None:
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.featurize.text.MultiNGram", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(outputCol="MultiNGram_e55ca401cc0e_output")
+        self._setDefault(outputCol="MultiNGram_e4e83a5ed80f_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -65,7 +67,7 @@ class MultiNGram(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         self,
         inputCol=None,
         lengths=None,
-        outputCol="MultiNGram_e55ca401cc0e_output"
+        outputCol="MultiNGram_e4e83a5ed80f_output"
         ):
         """
         Set the (keyword only) parameters
@@ -142,5 +144,6 @@ class MultiNGram(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
 
     
 
+    
     
         

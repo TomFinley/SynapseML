@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -83,7 +85,7 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="DetectAnomalies_4c622ea8b4e4_error",
+        errorCol="DetectAnomalies_430949162217_error",
         granularity=None,
         granularityCol=None,
         handler=None,
@@ -93,7 +95,7 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="DetectAnomalies_4c622ea8b4e4_output",
+        outputCol="DetectAnomalies_430949162217_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -111,8 +113,8 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DetectAnomalies_4c622ea8b4e4_error")
-        self._setDefault(outputCol="DetectAnomalies_4c622ea8b4e4_output")
+        self._setDefault(errorCol="DetectAnomalies_430949162217_error")
+        self._setDefault(outputCol="DetectAnomalies_430949162217_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -131,7 +133,7 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="DetectAnomalies_4c622ea8b4e4_error",
+        errorCol="DetectAnomalies_430949162217_error",
         granularity=None,
         granularityCol=None,
         handler=None,
@@ -141,7 +143,7 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="DetectAnomalies_4c622ea8b4e4_output",
+        outputCol="DetectAnomalies_430949162217_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -526,6 +528,7 @@ class DetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

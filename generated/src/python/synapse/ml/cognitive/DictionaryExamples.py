@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -69,11 +71,11 @@ class DictionaryExamples(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DictionaryExamples_0081d46ac3c9_error",
+        errorCol="DictionaryExamples_fd1d828e7992_error",
         fromLanguage=None,
         fromLanguageCol=None,
         handler=None,
-        outputCol="DictionaryExamples_0081d46ac3c9_output",
+        outputCol="DictionaryExamples_fd1d828e7992_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -91,8 +93,8 @@ class DictionaryExamples(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DictionaryExamples_0081d46ac3c9_error")
-        self._setDefault(outputCol="DictionaryExamples_0081d46ac3c9_output")
+        self._setDefault(errorCol="DictionaryExamples_fd1d828e7992_error")
+        self._setDefault(outputCol="DictionaryExamples_fd1d828e7992_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,11 +111,11 @@ class DictionaryExamples(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DictionaryExamples_0081d46ac3c9_error",
+        errorCol="DictionaryExamples_fd1d828e7992_error",
         fromLanguage=None,
         fromLanguageCol=None,
         handler=None,
-        outputCol="DictionaryExamples_0081d46ac3c9_output",
+        outputCol="DictionaryExamples_fd1d828e7992_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -394,6 +396,7 @@ class DictionaryExamples(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

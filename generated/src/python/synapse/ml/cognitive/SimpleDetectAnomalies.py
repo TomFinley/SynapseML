@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -92,7 +94,7 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="SimpleDetectAnomalies_54dfdd627d25_error",
+        errorCol="SimpleDetectAnomalies_7cc8579043a3_error",
         granularity=None,
         granularityCol=None,
         groupbyCol=None,
@@ -103,7 +105,7 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="SimpleDetectAnomalies_54dfdd627d25_output",
+        outputCol="SimpleDetectAnomalies_7cc8579043a3_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -123,8 +125,8 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="SimpleDetectAnomalies_54dfdd627d25_error")
-        self._setDefault(outputCol="SimpleDetectAnomalies_54dfdd627d25_output")
+        self._setDefault(errorCol="SimpleDetectAnomalies_7cc8579043a3_error")
+        self._setDefault(outputCol="SimpleDetectAnomalies_7cc8579043a3_output")
         self._setDefault(timeout=60.0)
         self._setDefault(timestampCol="timestamp")
         self._setDefault(valueCol="value")
@@ -145,7 +147,7 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="SimpleDetectAnomalies_54dfdd627d25_error",
+        errorCol="SimpleDetectAnomalies_7cc8579043a3_error",
         granularity=None,
         granularityCol=None,
         groupbyCol=None,
@@ -156,7 +158,7 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="SimpleDetectAnomalies_54dfdd627d25_output",
+        outputCol="SimpleDetectAnomalies_7cc8579043a3_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -591,6 +593,7 @@ class SimpleDetectAnomalies(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, 
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

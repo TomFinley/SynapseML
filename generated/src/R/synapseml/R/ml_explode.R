@@ -13,7 +13,7 @@
 ml_explode <- function(
     x,
     inputCol=NULL,
-    outputCol="Explode_cda5c7c5d6d9_output",
+    outputCol="Explode_edb36653be6f_output",
     only.model=FALSE,
     uid=random_string("ml_explode"),
     ...)

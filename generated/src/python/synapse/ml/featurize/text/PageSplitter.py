@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -50,7 +52,7 @@ class PageSplitter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         inputCol=None,
         maximumPageLength=5000,
         minimumPageLength=4500,
-        outputCol="PageSplitter_fb9004ea0ccd_output"
+        outputCol="PageSplitter_e9150d3b1a45_output"
         ):
         super(PageSplitter, self).__init__()
         if java_obj is None:
@@ -60,7 +62,7 @@ class PageSplitter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         self._setDefault(boundaryRegex="\\s")
         self._setDefault(maximumPageLength=5000)
         self._setDefault(minimumPageLength=4500)
-        self._setDefault(outputCol="PageSplitter_fb9004ea0ccd_output")
+        self._setDefault(outputCol="PageSplitter_e9150d3b1a45_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -78,7 +80,7 @@ class PageSplitter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         inputCol=None,
         maximumPageLength=5000,
         minimumPageLength=4500,
-        outputCol="PageSplitter_fb9004ea0ccd_output"
+        outputCol="PageSplitter_e9150d3b1a45_output"
         ):
         """
         Set the (keyword only) parameters
@@ -187,5 +189,6 @@ class PageSplitter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
 
     
 
+    
     
         

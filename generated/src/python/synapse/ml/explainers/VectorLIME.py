@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -70,7 +72,7 @@ class VectorLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="VectorLIME_2c2a92dbb07e__output",
+        outputCol="VectorLIME_776a90a88753__output",
         regularization=0.0,
         targetClasses=[],
         targetClassesCol=None,
@@ -84,7 +86,7 @@ class VectorLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         self._setDefault(kernelWidth=0.75)
         self._setDefault(metricsCol="r2")
         self._setDefault(numSamples=1000)
-        self._setDefault(outputCol="VectorLIME_2c2a92dbb07e__output")
+        self._setDefault(outputCol="VectorLIME_776a90a88753__output")
         self._setDefault(regularization=0.0)
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
@@ -107,7 +109,7 @@ class VectorLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="VectorLIME_2c2a92dbb07e__output",
+        outputCol="VectorLIME_776a90a88753__output",
         regularization=0.0,
         targetClasses=[],
         targetClassesCol=None,
@@ -318,5 +320,6 @@ class VectorLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
 
     
 
+    
     
         

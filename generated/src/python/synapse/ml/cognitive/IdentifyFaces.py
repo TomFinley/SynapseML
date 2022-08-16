@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -74,7 +76,7 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         concurrentTimeout=None,
         confidenceThreshold=None,
         confidenceThresholdCol=None,
-        errorCol="IdentifyFaces_869bc69649c9_error",
+        errorCol="IdentifyFaces_bb8f27297e10_error",
         faceIds=None,
         faceIdsCol=None,
         handler=None,
@@ -82,7 +84,7 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         largePersonGroupIdCol=None,
         maxNumOfCandidatesReturned=None,
         maxNumOfCandidatesReturnedCol=None,
-        outputCol="IdentifyFaces_869bc69649c9_output",
+        outputCol="IdentifyFaces_bb8f27297e10_output",
         personGroupId=None,
         personGroupIdCol=None,
         subscriptionKey=None,
@@ -96,8 +98,8 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="IdentifyFaces_869bc69649c9_error")
-        self._setDefault(outputCol="IdentifyFaces_869bc69649c9_output")
+        self._setDefault(errorCol="IdentifyFaces_bb8f27297e10_error")
+        self._setDefault(outputCol="IdentifyFaces_bb8f27297e10_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -116,7 +118,7 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         concurrentTimeout=None,
         confidenceThreshold=None,
         confidenceThresholdCol=None,
-        errorCol="IdentifyFaces_869bc69649c9_error",
+        errorCol="IdentifyFaces_bb8f27297e10_error",
         faceIds=None,
         faceIdsCol=None,
         handler=None,
@@ -124,7 +126,7 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         largePersonGroupIdCol=None,
         maxNumOfCandidatesReturned=None,
         maxNumOfCandidatesReturnedCol=None,
-        outputCol="IdentifyFaces_869bc69649c9_output",
+        outputCol="IdentifyFaces_bb8f27297e10_output",
         personGroupId=None,
         personGroupIdCol=None,
         subscriptionKey=None,
@@ -427,6 +429,7 @@ class IdentifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -69,11 +71,11 @@ class DictionaryLookup(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DictionaryLookup_a347aec6e7c4_error",
+        errorCol="DictionaryLookup_0a63cebcd004_error",
         fromLanguage=None,
         fromLanguageCol=None,
         handler=None,
-        outputCol="DictionaryLookup_a347aec6e7c4_output",
+        outputCol="DictionaryLookup_0a63cebcd004_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -91,8 +93,8 @@ class DictionaryLookup(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DictionaryLookup_a347aec6e7c4_error")
-        self._setDefault(outputCol="DictionaryLookup_a347aec6e7c4_output")
+        self._setDefault(errorCol="DictionaryLookup_0a63cebcd004_error")
+        self._setDefault(outputCol="DictionaryLookup_0a63cebcd004_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,11 +111,11 @@ class DictionaryLookup(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DictionaryLookup_a347aec6e7c4_error",
+        errorCol="DictionaryLookup_0a63cebcd004_error",
         fromLanguage=None,
         fromLanguageCol=None,
         handler=None,
-        outputCol="DictionaryLookup_a347aec6e7c4_output",
+        outputCol="DictionaryLookup_0a63cebcd004_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -394,6 +396,7 @@ class DictionaryLookup(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

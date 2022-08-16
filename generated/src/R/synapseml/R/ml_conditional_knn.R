@@ -22,7 +22,7 @@ ml_conditional_knn <- function(
     k=5,
     labelCol="labels",
     leafSize=50,
-    outputCol="ConditionalKNN_57b679597047_output",
+    outputCol="ConditionalKNN_f47f479dad02_output",
     valuesCol="values",
     unfit.model=FALSE,
     only.model=FALSE,

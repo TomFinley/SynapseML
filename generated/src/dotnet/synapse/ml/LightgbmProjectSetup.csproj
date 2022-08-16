@@ -7,7 +7,7 @@
     <IsPackable>true</IsPackable>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <Description>.NET for SynapseML.Lightgbm</Description>
-    <Version>0.10.0-rc1db95a104</Version>
+    <Version>0.10.0-rc3511c1382202208161208</Version>
   </PropertyGroup>
 
   <ItemGroup>

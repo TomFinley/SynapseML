@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -88,7 +90,7 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeReceipts_6e56439eb983_error",
+        errorCol="AnalyzeReceipts_50fe12ef77ec_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -101,7 +103,7 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeReceipts_6e56439eb983_output",
+        outputCol="AnalyzeReceipts_50fe12ef77ec_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -118,10 +120,10 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AnalyzeReceipts_6e56439eb983_error")
+        self._setDefault(errorCol="AnalyzeReceipts_50fe12ef77ec_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="AnalyzeReceipts_6e56439eb983_output")
+        self._setDefault(outputCol="AnalyzeReceipts_50fe12ef77ec_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -141,7 +143,7 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AnalyzeReceipts_6e56439eb983_error",
+        errorCol="AnalyzeReceipts_50fe12ef77ec_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -154,7 +156,7 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         maxPollingRetries=1000,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="AnalyzeReceipts_6e56439eb983_output",
+        outputCol="AnalyzeReceipts_50fe12ef77ec_output",
         pages=None,
         pagesCol=None,
         pollingDelay=300,
@@ -549,6 +551,7 @@ class AnalyzeReceipts(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

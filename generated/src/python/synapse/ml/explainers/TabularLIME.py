@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -74,7 +76,7 @@ class TabularLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="TabularLIME_43680407bcd4__output",
+        outputCol="TabularLIME_29e91f7ebdb3__output",
         regularization=0.0,
         targetClasses=[],
         targetClassesCol=None,
@@ -89,7 +91,7 @@ class TabularLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         self._setDefault(kernelWidth=0.75)
         self._setDefault(metricsCol="r2")
         self._setDefault(numSamples=1000)
-        self._setDefault(outputCol="TabularLIME_43680407bcd4__output")
+        self._setDefault(outputCol="TabularLIME_29e91f7ebdb3__output")
         self._setDefault(regularization=0.0)
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
@@ -113,7 +115,7 @@ class TabularLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="TabularLIME_43680407bcd4__output",
+        outputCol="TabularLIME_29e91f7ebdb3__output",
         regularization=0.0,
         targetClasses=[],
         targetClassesCol=None,
@@ -340,5 +342,6 @@ class TabularLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
 
     
 
+    
     
         

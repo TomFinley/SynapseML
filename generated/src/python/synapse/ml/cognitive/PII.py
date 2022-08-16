@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -80,13 +82,13 @@ class PII(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         concurrentTimeout=None,
         domain=None,
         domainCol=None,
-        errorCol="PII_3c96fcf92f6d_error",
+        errorCol="PII_b92facb6fa38_error",
         handler=None,
         language=None,
         languageCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="PII_3c96fcf92f6d_output",
+        outputCol="PII_b92facb6fa38_output",
         piiCategories=None,
         piiCategoriesCol=None,
         showStats=None,
@@ -106,8 +108,8 @@ class PII(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="PII_3c96fcf92f6d_error")
-        self._setDefault(outputCol="PII_3c96fcf92f6d_output")
+        self._setDefault(errorCol="PII_b92facb6fa38_error")
+        self._setDefault(outputCol="PII_b92facb6fa38_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -126,13 +128,13 @@ class PII(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
         concurrentTimeout=None,
         domain=None,
         domainCol=None,
-        errorCol="PII_3c96fcf92f6d_error",
+        errorCol="PII_b92facb6fa38_error",
         handler=None,
         language=None,
         languageCol=None,
         modelVersion=None,
         modelVersionCol=None,
-        outputCol="PII_3c96fcf92f6d_output",
+        outputCol="PII_b92facb6fa38_output",
         piiCategories=None,
         piiCategoriesCol=None,
         showStats=None,
@@ -493,6 +495,7 @@ class PII(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer):
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -76,14 +78,14 @@ class ReverseAddressGeocoder(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="ReverseAddressGeocoder_aad6835b22b4_error",
+        errorCol="ReverseAddressGeocoder_4e9ffe726c64_error",
         initialPollingDelay=300,
         latitude=None,
         latitudeCol=None,
         longitude=None,
         longitudeCol=None,
         maxPollingRetries=1000,
-        outputCol="ReverseAddressGeocoder_aad6835b22b4_output",
+        outputCol="ReverseAddressGeocoder_4e9ffe726c64_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -98,10 +100,10 @@ class ReverseAddressGeocoder(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="ReverseAddressGeocoder_aad6835b22b4_error")
+        self._setDefault(errorCol="ReverseAddressGeocoder_4e9ffe726c64_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="ReverseAddressGeocoder_aad6835b22b4_output")
+        self._setDefault(outputCol="ReverseAddressGeocoder_4e9ffe726c64_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -122,14 +124,14 @@ class ReverseAddressGeocoder(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="ReverseAddressGeocoder_aad6835b22b4_error",
+        errorCol="ReverseAddressGeocoder_4e9ffe726c64_error",
         initialPollingDelay=300,
         latitude=None,
         latitudeCol=None,
         longitude=None,
         longitudeCol=None,
         maxPollingRetries=1000,
-        outputCol="ReverseAddressGeocoder_aad6835b22b4_output",
+        outputCol="ReverseAddressGeocoder_4e9ffe726c64_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -418,5 +420,6 @@ class ReverseAddressGeocoder(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
 
     
 
+    
     
         

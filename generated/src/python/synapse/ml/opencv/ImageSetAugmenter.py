@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -46,7 +48,7 @@ class ImageSetAugmenter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         flipLeftRight=True,
         flipUpDown=False,
         inputCol="image",
-        outputCol="ImageSetAugmenter_b4e6a4da48ee_output"
+        outputCol="ImageSetAugmenter_748950a8f9ed_output"
         ):
         super(ImageSetAugmenter, self).__init__()
         if java_obj is None:
@@ -56,7 +58,7 @@ class ImageSetAugmenter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         self._setDefault(flipLeftRight=True)
         self._setDefault(flipUpDown=False)
         self._setDefault(inputCol="image")
-        self._setDefault(outputCol="ImageSetAugmenter_b4e6a4da48ee_output")
+        self._setDefault(outputCol="ImageSetAugmenter_748950a8f9ed_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -73,7 +75,7 @@ class ImageSetAugmenter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         flipLeftRight=True,
         flipUpDown=False,
         inputCol="image",
-        outputCol="ImageSetAugmenter_b4e6a4da48ee_output"
+        outputCol="ImageSetAugmenter_748950a8f9ed_output"
         ):
         """
         Set the (keyword only) parameters
@@ -166,5 +168,6 @@ class ImageSetAugmenter(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
 
     
 
+    
     
         

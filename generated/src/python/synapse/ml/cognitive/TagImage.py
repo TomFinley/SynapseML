@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -66,7 +68,7 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TagImage_fc02483f52e5_error",
+        errorCol="TagImage_c4d746f7c286_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -74,7 +76,7 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="TagImage_fc02483f52e5_output",
+        outputCol="TagImage_c4d746f7c286_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -86,8 +88,8 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="TagImage_fc02483f52e5_error")
-        self._setDefault(outputCol="TagImage_fc02483f52e5_output")
+        self._setDefault(errorCol="TagImage_c4d746f7c286_error")
+        self._setDefault(outputCol="TagImage_c4d746f7c286_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -104,7 +106,7 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TagImage_fc02483f52e5_error",
+        errorCol="TagImage_c4d746f7c286_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -112,7 +114,7 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="TagImage_fc02483f52e5_output",
+        outputCol="TagImage_c4d746f7c286_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -361,6 +363,7 @@ class TagImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,9 +65,9 @@ class Detect(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Detect_29d18bcab6c1_error",
+        errorCol="Detect_e88193106508_error",
         handler=None,
-        outputCol="Detect_29d18bcab6c1_output",
+        outputCol="Detect_e88193106508_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -81,8 +83,8 @@ class Detect(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="Detect_29d18bcab6c1_error")
-        self._setDefault(outputCol="Detect_29d18bcab6c1_output")
+        self._setDefault(errorCol="Detect_e88193106508_error")
+        self._setDefault(outputCol="Detect_e88193106508_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,9 +101,9 @@ class Detect(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Detect_29d18bcab6c1_error",
+        errorCol="Detect_e88193106508_error",
         handler=None,
-        outputCol="Detect_29d18bcab6c1_output",
+        outputCol="Detect_e88193106508_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         subscriptionRegion=None,
@@ -328,6 +330,7 @@ class Detect(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

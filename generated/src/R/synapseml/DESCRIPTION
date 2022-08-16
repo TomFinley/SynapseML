@@ -2,7 +2,7 @@ Package: synapseml.vw
 Title: Access to SynapseML via R
 Description: Provides an interface to SynapseML.
 Version: 0.10.0
-Date: 2022-08-08
+Date: 2022-08-16
 Author: Microsoft Corporation
 Maintainer: SynapseML Team <synapseml-support@microsoft.com>
 URL: https://github.com/Microsoft/SynapseML

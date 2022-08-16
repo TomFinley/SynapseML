@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -75,7 +77,7 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TextSentiment_0aebbfd7b6fe_error",
+        errorCol="TextSentiment_d0f5e70e51b5_error",
         handler=None,
         language=None,
         languageCol=None,
@@ -83,7 +85,7 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         modelVersionCol=None,
         opinionMining=None,
         opinionMiningCol=None,
-        outputCol="TextSentiment_0aebbfd7b6fe_output",
+        outputCol="TextSentiment_d0f5e70e51b5_output",
         showStats=None,
         showStatsCol=None,
         stringIndexType=None,
@@ -101,8 +103,8 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="TextSentiment_0aebbfd7b6fe_error")
-        self._setDefault(outputCol="TextSentiment_0aebbfd7b6fe_output")
+        self._setDefault(errorCol="TextSentiment_d0f5e70e51b5_error")
+        self._setDefault(outputCol="TextSentiment_d0f5e70e51b5_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -119,7 +121,7 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TextSentiment_0aebbfd7b6fe_error",
+        errorCol="TextSentiment_d0f5e70e51b5_error",
         handler=None,
         language=None,
         languageCol=None,
@@ -127,7 +129,7 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         modelVersionCol=None,
         opinionMining=None,
         opinionMiningCol=None,
-        outputCol="TextSentiment_0aebbfd7b6fe_output",
+        outputCol="TextSentiment_d0f5e70e51b5_output",
         showStats=None,
         showStatsCol=None,
         stringIndexType=None,
@@ -460,6 +462,7 @@ class TextSentiment(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

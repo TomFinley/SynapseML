@@ -17,7 +17,7 @@ ml_value_indexer_model <- function(
     dataType="string",
     inputCol="input",
     levels=NULL,
-    outputCol="ValueIndexerModel_5d851b06d475_output",
+    outputCol="ValueIndexerModel_c582deb2ff79_output",
     only.model=FALSE,
     uid=random_string("ml_value_indexer_model"),
     ...)

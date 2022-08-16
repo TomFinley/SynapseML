@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -49,7 +51,7 @@ class ResizeImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         height=None,
         inputCol="image",
         nChannels=None,
-        outputCol="ResizeImageTransformer_debc6b8f06c5_output",
+        outputCol="ResizeImageTransformer_a3248d8029d1_output",
         width=None
         ):
         super(ResizeImageTransformer, self).__init__()
@@ -58,7 +60,7 @@ class ResizeImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         else:
             self._java_obj = java_obj
         self._setDefault(inputCol="image")
-        self._setDefault(outputCol="ResizeImageTransformer_debc6b8f06c5_output")
+        self._setDefault(outputCol="ResizeImageTransformer_a3248d8029d1_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -75,7 +77,7 @@ class ResizeImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         height=None,
         inputCol="image",
         nChannels=None,
-        outputCol="ResizeImageTransformer_debc6b8f06c5_output",
+        outputCol="ResizeImageTransformer_a3248d8029d1_output",
         width=None
         ):
         """
@@ -185,5 +187,6 @@ class ResizeImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
 
     
 
+    
     
         

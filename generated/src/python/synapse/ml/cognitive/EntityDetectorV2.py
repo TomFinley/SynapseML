@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,11 +65,11 @@ class EntityDetectorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="EntityDetectorV2_282c11655305_error",
+        errorCol="EntityDetectorV2_212fa57e546b_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="EntityDetectorV2_282c11655305_output",
+        outputCol="EntityDetectorV2_212fa57e546b_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -81,8 +83,8 @@ class EntityDetectorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="EntityDetectorV2_282c11655305_error")
-        self._setDefault(outputCol="EntityDetectorV2_282c11655305_output")
+        self._setDefault(errorCol="EntityDetectorV2_212fa57e546b_error")
+        self._setDefault(outputCol="EntityDetectorV2_212fa57e546b_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,11 +101,11 @@ class EntityDetectorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="EntityDetectorV2_282c11655305_error",
+        errorCol="EntityDetectorV2_212fa57e546b_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="EntityDetectorV2_282c11655305_output",
+        outputCol="EntityDetectorV2_212fa57e546b_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -328,6 +330,7 @@ class EntityDetectorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

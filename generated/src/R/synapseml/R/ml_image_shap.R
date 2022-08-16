@@ -29,7 +29,7 @@ ml_image_shap <- function(
     model=NULL,
     modifier=130.0,
     numSamples=NULL,
-    outputCol="ImageSHAP_0dd3e2958f87__output",
+    outputCol="ImageSHAP_5e1ecd221e49__output",
     superpixelCol="superpixels",
     targetClasses=c(),
     targetClassesCol=NULL,

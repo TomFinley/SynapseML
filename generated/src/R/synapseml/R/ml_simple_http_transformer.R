@@ -23,7 +23,7 @@ ml_simple_http_transformer <- function(
     x,
     concurrency=1,
     concurrentTimeout=NULL,
-    errorCol="SimpleHTTPTransformer_c8bc655ed69d_errors",
+    errorCol="SimpleHTTPTransformer_c6a4e3b1f74c_errors",
     flattenOutputBatches=NULL,
     handler=NULL,
     inputCol=NULL,

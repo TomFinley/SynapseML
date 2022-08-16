@@ -16,7 +16,7 @@
 
 ml_train_classifier <- function(
     x,
-    featuresCol="TrainClassifier_49f28fbfe05b_features",
+    featuresCol="TrainClassifier_e9a579e3fddd_features",
     labelCol=NULL,
     labels=NULL,
     model=NULL,

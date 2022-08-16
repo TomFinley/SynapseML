@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -66,7 +68,7 @@ class _SimpleHTTPTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="SimpleHTTPTransformer_2d3a1c58c538_errors",
+        errorCol="SimpleHTTPTransformer_4cd4192c4730_errors",
         flattenOutputBatches=None,
         handler=None,
         inputCol=None,
@@ -82,7 +84,7 @@ class _SimpleHTTPTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="SimpleHTTPTransformer_2d3a1c58c538_errors")
+        self._setDefault(errorCol="SimpleHTTPTransformer_4cd4192c4730_errors")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,7 +101,7 @@ class _SimpleHTTPTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="SimpleHTTPTransformer_2d3a1c58c538_errors",
+        errorCol="SimpleHTTPTransformer_4cd4192c4730_errors",
         flattenOutputBatches=None,
         handler=None,
         inputCol=None,
@@ -312,5 +314,6 @@ class _SimpleHTTPTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
 
     
 
+    
     
         

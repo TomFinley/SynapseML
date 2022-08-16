@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -48,7 +50,7 @@ class _UDFTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         java_obj=None,
         inputCol=None,
         inputCols=None,
-        outputCol="UDFTransformer_0ef67108cfad_output",
+        outputCol="UDFTransformer_47cc7fbfafe4_output",
         udf=None,
         udfScala=None
         ):
@@ -57,7 +59,7 @@ class _UDFTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.stages.UDFTransformer", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(outputCol="UDFTransformer_0ef67108cfad_output")
+        self._setDefault(outputCol="UDFTransformer_47cc7fbfafe4_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -73,7 +75,7 @@ class _UDFTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         self,
         inputCol=None,
         inputCols=None,
-        outputCol="UDFTransformer_0ef67108cfad_output",
+        outputCol="UDFTransformer_47cc7fbfafe4_output",
         udf=None,
         udfScala=None
         ):
@@ -184,5 +186,6 @@ class _UDFTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
 
     
 
+    
     
         

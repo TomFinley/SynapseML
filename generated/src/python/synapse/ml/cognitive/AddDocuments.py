@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -71,10 +73,10 @@ class AddDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         batchSize=100,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AddDocuments_5ad67890a89a_error",
+        errorCol="AddDocuments_654362e03462_error",
         handler=None,
         indexName=None,
-        outputCol="AddDocuments_5ad67890a89a_output",
+        outputCol="AddDocuments_654362e03462_output",
         serviceName=None,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -89,8 +91,8 @@ class AddDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         self._setDefault(actionCol="@search.action")
         self._setDefault(batchSize=100)
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AddDocuments_5ad67890a89a_error")
-        self._setDefault(outputCol="AddDocuments_5ad67890a89a_output")
+        self._setDefault(errorCol="AddDocuments_654362e03462_error")
+        self._setDefault(outputCol="AddDocuments_654362e03462_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,10 +111,10 @@ class AddDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         batchSize=100,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="AddDocuments_5ad67890a89a_error",
+        errorCol="AddDocuments_654362e03462_error",
         handler=None,
         indexName=None,
-        outputCol="AddDocuments_5ad67890a89a_output",
+        outputCol="AddDocuments_654362e03462_output",
         serviceName=None,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -348,5 +350,6 @@ class AddDocuments(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
 
     
 
+    
     
         

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.train.TrainedRegressorModel import TrainedRegressorModel
 
 @inherit_doc
@@ -43,7 +45,7 @@ class TrainRegressor(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
     def __init__(
         self,
         java_obj=None,
-        featuresCol="TrainRegressor_edbef5dedf61_features",
+        featuresCol="TrainRegressor_9f22332a2c7c_features",
         labelCol=None,
         model=None,
         numFeatures=0
@@ -53,7 +55,7 @@ class TrainRegressor(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.train.TrainRegressor", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(featuresCol="TrainRegressor_edbef5dedf61_features")
+        self._setDefault(featuresCol="TrainRegressor_9f22332a2c7c_features")
         self._setDefault(numFeatures=0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -68,7 +70,7 @@ class TrainRegressor(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
     @keyword_only
     def setParams(
         self,
-        featuresCol="TrainRegressor_edbef5dedf61_features",
+        featuresCol="TrainRegressor_9f22332a2c7c_features",
         labelCol=None,
         model=None,
         numFeatures=0
@@ -174,5 +176,6 @@ class TrainRegressor(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

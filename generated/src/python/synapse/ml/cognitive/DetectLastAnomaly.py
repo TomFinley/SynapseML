@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -83,7 +85,7 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="DetectLastAnomaly_220422e07dd9_error",
+        errorCol="DetectLastAnomaly_6fd454241aa2_error",
         granularity=None,
         granularityCol=None,
         handler=None,
@@ -93,7 +95,7 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="DetectLastAnomaly_220422e07dd9_output",
+        outputCol="DetectLastAnomaly_6fd454241aa2_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -111,8 +113,8 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DetectLastAnomaly_220422e07dd9_error")
-        self._setDefault(outputCol="DetectLastAnomaly_220422e07dd9_output")
+        self._setDefault(errorCol="DetectLastAnomaly_6fd454241aa2_error")
+        self._setDefault(outputCol="DetectLastAnomaly_6fd454241aa2_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -131,7 +133,7 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         concurrentTimeout=None,
         customInterval=None,
         customIntervalCol=None,
-        errorCol="DetectLastAnomaly_220422e07dd9_error",
+        errorCol="DetectLastAnomaly_6fd454241aa2_error",
         granularity=None,
         granularityCol=None,
         handler=None,
@@ -141,7 +143,7 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         imputeModeCol=None,
         maxAnomalyRatio=None,
         maxAnomalyRatioCol=None,
-        outputCol="DetectLastAnomaly_220422e07dd9_output",
+        outputCol="DetectLastAnomaly_6fd454241aa2_output",
         period=None,
         periodCol=None,
         sensitivity=None,
@@ -526,6 +528,7 @@ class DetectLastAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

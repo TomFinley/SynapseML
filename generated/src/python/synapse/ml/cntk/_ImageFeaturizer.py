@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -54,7 +56,7 @@ class _ImageFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         dropNa=True,
         inputCol=None,
         layerNames=None,
-        outputCol="ImageFeaturizer_fb11e4a6f121_output"
+        outputCol="ImageFeaturizer_f76bcc3b95e7_output"
         ):
         super(_ImageFeaturizer, self).__init__()
         if java_obj is None:
@@ -63,7 +65,7 @@ class _ImageFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
             self._java_obj = java_obj
         self._setDefault(cutOutputLayers=1)
         self._setDefault(dropNa=True)
-        self._setDefault(outputCol="ImageFeaturizer_fb11e4a6f121_output")
+        self._setDefault(outputCol="ImageFeaturizer_f76bcc3b95e7_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -82,7 +84,7 @@ class _ImageFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         dropNa=True,
         inputCol=None,
         layerNames=None,
-        outputCol="ImageFeaturizer_fb11e4a6f121_output"
+        outputCol="ImageFeaturizer_f76bcc3b95e7_output"
         ):
         """
         Set the (keyword only) parameters
@@ -207,5 +209,6 @@ class _ImageFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
 
     
 
+    
     
         

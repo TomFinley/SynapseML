@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -75,7 +77,7 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="FindSimilarFace_8796e693d9c9_error",
+        errorCol="FindSimilarFace_536d27dec5ac_error",
         faceId=None,
         faceIdCol=None,
         faceIds=None,
@@ -89,7 +91,7 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         maxNumOfCandidatesReturnedCol=None,
         mode=None,
         modeCol=None,
-        outputCol="FindSimilarFace_8796e693d9c9_output",
+        outputCol="FindSimilarFace_536d27dec5ac_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -101,8 +103,8 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="FindSimilarFace_8796e693d9c9_error")
-        self._setDefault(outputCol="FindSimilarFace_8796e693d9c9_output")
+        self._setDefault(errorCol="FindSimilarFace_536d27dec5ac_error")
+        self._setDefault(outputCol="FindSimilarFace_536d27dec5ac_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -119,7 +121,7 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="FindSimilarFace_8796e693d9c9_error",
+        errorCol="FindSimilarFace_536d27dec5ac_error",
         faceId=None,
         faceIdCol=None,
         faceIds=None,
@@ -133,7 +135,7 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         maxNumOfCandidatesReturnedCol=None,
         mode=None,
         modeCol=None,
-        outputCol="FindSimilarFace_8796e693d9c9_output",
+        outputCol="FindSimilarFace_536d27dec5ac_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -460,6 +462,7 @@ class FindSimilarFace(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

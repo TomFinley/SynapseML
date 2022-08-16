@@ -26,7 +26,7 @@ ml_vector_shap <- function(
     metricsCol="r2",
     model=NULL,
     numSamples=NULL,
-    outputCol="VectorSHAP_ebf383d585e3__output",
+    outputCol="VectorSHAP_5529171facb0__output",
     targetClasses=c(),
     targetClassesCol=NULL,
     targetCol="probability",

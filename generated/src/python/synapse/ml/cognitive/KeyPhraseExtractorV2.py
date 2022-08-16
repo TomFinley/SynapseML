@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,11 +65,11 @@ class KeyPhraseExtractorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, J
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="KeyPhraseExtractorV2_a22847a2d0ac_error",
+        errorCol="KeyPhraseExtractorV2_6a1b21aaeee1_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="KeyPhraseExtractorV2_a22847a2d0ac_output",
+        outputCol="KeyPhraseExtractorV2_6a1b21aaeee1_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -81,8 +83,8 @@ class KeyPhraseExtractorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, J
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="KeyPhraseExtractorV2_a22847a2d0ac_error")
-        self._setDefault(outputCol="KeyPhraseExtractorV2_a22847a2d0ac_output")
+        self._setDefault(errorCol="KeyPhraseExtractorV2_6a1b21aaeee1_error")
+        self._setDefault(outputCol="KeyPhraseExtractorV2_6a1b21aaeee1_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,11 +101,11 @@ class KeyPhraseExtractorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, J
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="KeyPhraseExtractorV2_a22847a2d0ac_error",
+        errorCol="KeyPhraseExtractorV2_6a1b21aaeee1_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="KeyPhraseExtractorV2_a22847a2d0ac_output",
+        outputCol="KeyPhraseExtractorV2_6a1b21aaeee1_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -328,6 +330,7 @@ class KeyPhraseExtractorV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, J
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

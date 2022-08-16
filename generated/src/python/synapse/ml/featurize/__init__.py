@@ -19,7 +19,7 @@ SynapseML requires Scala 2.12, Spark 3.0+, and Python 3.6+.
 """
 
 __version__ = "0.10.0.dev1"
-__spark_package_version__ = "0.10.0-1-db95a104-SNAPSHOT"
+__spark_package_version__ = "0.10.0-3-511c1382-20220816-1208-SNAPSHOT"
 
 from synapse.ml.featurize.CleanMissingData import *
 from synapse.ml.featurize.CleanMissingDataModel import *

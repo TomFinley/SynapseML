@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -71,13 +73,13 @@ class SpeechToText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         audioDataCol=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="SpeechToText_3ca576a3a664_error",
+        errorCol="SpeechToText_a3bcbcc5de39_error",
         format=None,
         formatCol=None,
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="SpeechToText_3ca576a3a664_output",
+        outputCol="SpeechToText_a3bcbcc5de39_output",
         profanity=None,
         profanityCol=None,
         subscriptionKey=None,
@@ -91,8 +93,8 @@ class SpeechToText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="SpeechToText_3ca576a3a664_error")
-        self._setDefault(outputCol="SpeechToText_3ca576a3a664_output")
+        self._setDefault(errorCol="SpeechToText_a3bcbcc5de39_error")
+        self._setDefault(outputCol="SpeechToText_a3bcbcc5de39_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -111,13 +113,13 @@ class SpeechToText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         audioDataCol=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="SpeechToText_3ca576a3a664_error",
+        errorCol="SpeechToText_a3bcbcc5de39_error",
         format=None,
         formatCol=None,
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="SpeechToText_3ca576a3a664_output",
+        outputCol="SpeechToText_a3bcbcc5de39_output",
         profanity=None,
         profanityCol=None,
         subscriptionKey=None,
@@ -394,6 +396,7 @@ class SpeechToText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

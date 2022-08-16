@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -72,7 +74,7 @@ class TextLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="TextLIME_ae1913f6e7d0__output",
+        outputCol="TextLIME_bcabae7038bc__output",
         regularization=0.0,
         samplingFraction=0.7,
         targetClasses=[],
@@ -88,7 +90,7 @@ class TextLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         self._setDefault(kernelWidth=0.75)
         self._setDefault(metricsCol="r2")
         self._setDefault(numSamples=1000)
-        self._setDefault(outputCol="TextLIME_ae1913f6e7d0__output")
+        self._setDefault(outputCol="TextLIME_bcabae7038bc__output")
         self._setDefault(regularization=0.0)
         self._setDefault(samplingFraction=0.7)
         self._setDefault(targetClasses=[])
@@ -112,7 +114,7 @@ class TextLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
         metricsCol="r2",
         model=None,
         numSamples=1000,
-        outputCol="TextLIME_ae1913f6e7d0__output",
+        outputCol="TextLIME_bcabae7038bc__output",
         regularization=0.0,
         samplingFraction=0.7,
         targetClasses=[],
@@ -339,5 +341,6 @@ class TextLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransform
 
     
 
+    
     
         

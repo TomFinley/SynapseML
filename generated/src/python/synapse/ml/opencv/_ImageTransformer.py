@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -62,7 +64,7 @@ class _ImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         inputCol="image",
         normalizeMean=None,
         normalizeStd=None,
-        outputCol="ImageTransformer_5d216d39e348_output",
+        outputCol="ImageTransformer_ad5c992fbb88_output",
         stages=None,
         tensorChannelOrder="RGB",
         tensorElementType=None,
@@ -74,7 +76,7 @@ class _ImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         else:
             self._java_obj = java_obj
         self._setDefault(inputCol="image")
-        self._setDefault(outputCol="ImageTransformer_5d216d39e348_output")
+        self._setDefault(outputCol="ImageTransformer_ad5c992fbb88_output")
         self._setDefault(tensorChannelOrder="RGB")
         self._setDefault(toTensor=False)
         if hasattr(self, "_input_kwargs"):
@@ -94,7 +96,7 @@ class _ImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         inputCol="image",
         normalizeMean=None,
         normalizeStd=None,
-        outputCol="ImageTransformer_5d216d39e348_output",
+        outputCol="ImageTransformer_ad5c992fbb88_output",
         stages=None,
         tensorChannelOrder="RGB",
         tensorElementType=None,
@@ -271,5 +273,6 @@ class _ImageTransformer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
 
     
 
+    
     
         

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -94,14 +96,14 @@ class DocumentTranslator(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DocumentTranslator_c35e5a5d86e7_error",
+        errorCol="DocumentTranslator_55d7fba51969_error",
         filterPrefix=None,
         filterPrefixCol=None,
         filterSuffix=None,
         filterSuffixCol=None,
         initialPollingDelay=300,
         maxPollingRetries=1000,
-        outputCol="DocumentTranslator_c35e5a5d86e7_output",
+        outputCol="DocumentTranslator_55d7fba51969_output",
         pollingDelay=300,
         serviceName=None,
         sourceLanguage=None,
@@ -127,10 +129,10 @@ class DocumentTranslator(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="DocumentTranslator_c35e5a5d86e7_error")
+        self._setDefault(errorCol="DocumentTranslator_55d7fba51969_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="DocumentTranslator_c35e5a5d86e7_output")
+        self._setDefault(outputCol="DocumentTranslator_55d7fba51969_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -150,14 +152,14 @@ class DocumentTranslator(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="DocumentTranslator_c35e5a5d86e7_error",
+        errorCol="DocumentTranslator_55d7fba51969_error",
         filterPrefix=None,
         filterPrefixCol=None,
         filterSuffix=None,
         filterSuffixCol=None,
         initialPollingDelay=300,
         maxPollingRetries=1000,
-        outputCol="DocumentTranslator_c35e5a5d86e7_output",
+        outputCol="DocumentTranslator_55d7fba51969_output",
         pollingDelay=300,
         serviceName=None,
         sourceLanguage=None,
@@ -603,6 +605,7 @@ class DocumentTranslator(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
 
     
 
+    
     
     def setLinkedService(self, value):
         self._java_obj = self._java_obj.setLinkedService(value)

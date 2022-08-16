@@ -27,7 +27,7 @@ ml_vector_lime <- function(
     metricsCol="r2",
     model=NULL,
     numSamples=1000,
-    outputCol="VectorLIME_29816ec240d2__output",
+    outputCol="VectorLIME_c6c6aadd9c58__output",
     regularization=0.0,
     targetClasses=c(),
     targetClassesCol=NULL,

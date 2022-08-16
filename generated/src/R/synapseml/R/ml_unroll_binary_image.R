@@ -18,7 +18,7 @@ ml_unroll_binary_image <- function(
     height=NULL,
     inputCol="image",
     nChannels=NULL,
-    outputCol="UnrollImage_bf5b14032799_output",
+    outputCol="UnrollImage_d7a7ddb6cbaa_output",
     width=NULL,
     only.model=FALSE,
     uid=random_string("ml_unroll_binary_image"),

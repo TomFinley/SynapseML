@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -69,11 +71,11 @@ class BreakSentence(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="BreakSentence_eab39b3d30d3_error",
+        errorCol="BreakSentence_f875fa63adc9_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="BreakSentence_eab39b3d30d3_output",
+        outputCol="BreakSentence_f875fa63adc9_output",
         script=None,
         scriptCol=None,
         subscriptionKey=None,
@@ -91,8 +93,8 @@ class BreakSentence(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="BreakSentence_eab39b3d30d3_error")
-        self._setDefault(outputCol="BreakSentence_eab39b3d30d3_output")
+        self._setDefault(errorCol="BreakSentence_f875fa63adc9_error")
+        self._setDefault(outputCol="BreakSentence_f875fa63adc9_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -109,11 +111,11 @@ class BreakSentence(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="BreakSentence_eab39b3d30d3_error",
+        errorCol="BreakSentence_f875fa63adc9_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="BreakSentence_eab39b3d30d3_output",
+        outputCol="BreakSentence_f875fa63adc9_output",
         script=None,
         scriptCol=None,
         subscriptionKey=None,
@@ -394,6 +396,7 @@ class BreakSentence(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

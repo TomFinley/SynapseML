@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.cognitive.DetectMultivariateAnomaly import DetectMultivariateAnomaly
 
 @inherit_doc
@@ -117,13 +119,13 @@ class FitMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         displayName=None,
         endTime=None,
         endpoint=None,
-        errorCol="FitMultivariateAnomaly_29ad473dd406_error",
+        errorCol="FitMultivariateAnomaly_2081ce7a6cf6_error",
         fillNAMethod=None,
         initialPollingDelay=300,
         inputCols=None,
         intermediateSaveDir=None,
         maxPollingRetries=1000,
-        outputCol="FitMultivariateAnomaly_29ad473dd406_output",
+        outputCol="FitMultivariateAnomaly_2081ce7a6cf6_output",
         paddingValue=None,
         pollingDelay=300,
         sasToken=None,
@@ -143,10 +145,10 @@ class FitMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         else:
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
-        self._setDefault(errorCol="FitMultivariateAnomaly_29ad473dd406_error")
+        self._setDefault(errorCol="FitMultivariateAnomaly_2081ce7a6cf6_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="FitMultivariateAnomaly_29ad473dd406_output")
+        self._setDefault(outputCol="FitMultivariateAnomaly_2081ce7a6cf6_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timestampCol="timestamp")
@@ -171,13 +173,13 @@ class FitMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         displayName=None,
         endTime=None,
         endpoint=None,
-        errorCol="FitMultivariateAnomaly_29ad473dd406_error",
+        errorCol="FitMultivariateAnomaly_2081ce7a6cf6_error",
         fillNAMethod=None,
         initialPollingDelay=300,
         inputCols=None,
         intermediateSaveDir=None,
         maxPollingRetries=1000,
-        outputCol="FitMultivariateAnomaly_29ad473dd406_output",
+        outputCol="FitMultivariateAnomaly_2081ce7a6cf6_output",
         paddingValue=None,
         pollingDelay=300,
         sasToken=None,
@@ -654,6 +656,7 @@ class FitMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritable,
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

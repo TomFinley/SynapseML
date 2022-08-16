@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -72,7 +74,7 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GenerateThumbnails_941f62c3c64f_error",
+        errorCol="GenerateThumbnails_14ec2c2708c3_error",
         handler=None,
         height=None,
         heightCol=None,
@@ -80,7 +82,7 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         imageBytesCol=None,
         imageUrl=None,
         imageUrlCol=None,
-        outputCol="GenerateThumbnails_941f62c3c64f_output",
+        outputCol="GenerateThumbnails_14ec2c2708c3_output",
         smartCropping=None,
         smartCroppingCol=None,
         subscriptionKey=None,
@@ -96,8 +98,8 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="GenerateThumbnails_941f62c3c64f_error")
-        self._setDefault(outputCol="GenerateThumbnails_941f62c3c64f_output")
+        self._setDefault(errorCol="GenerateThumbnails_14ec2c2708c3_error")
+        self._setDefault(outputCol="GenerateThumbnails_14ec2c2708c3_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -114,7 +116,7 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="GenerateThumbnails_941f62c3c64f_error",
+        errorCol="GenerateThumbnails_14ec2c2708c3_error",
         handler=None,
         height=None,
         heightCol=None,
@@ -122,7 +124,7 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
         imageBytesCol=None,
         imageUrl=None,
         imageUrlCol=None,
-        outputCol="GenerateThumbnails_941f62c3c64f_output",
+        outputCol="GenerateThumbnails_14ec2c2708c3_output",
         smartCropping=None,
         smartCroppingCol=None,
         subscriptionKey=None,
@@ -427,6 +429,7 @@ class GenerateThumbnails(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Jav
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

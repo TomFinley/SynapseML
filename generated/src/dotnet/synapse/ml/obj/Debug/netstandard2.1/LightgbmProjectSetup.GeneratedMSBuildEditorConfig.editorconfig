@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = LightgbmProjectSetup
+build_property.ProjectDir = /home/tfinley/src/SOld/generated/src/dotnet/synapse/ml/

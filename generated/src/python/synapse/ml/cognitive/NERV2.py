@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,11 +65,11 @@ class NERV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer)
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="NERV2_d9f7ee8f618b_error",
+        errorCol="NERV2_fa6df3d6cd2f_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="NERV2_d9f7ee8f618b_output",
+        outputCol="NERV2_fa6df3d6cd2f_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -81,8 +83,8 @@ class NERV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer)
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="NERV2_d9f7ee8f618b_error")
-        self._setDefault(outputCol="NERV2_d9f7ee8f618b_output")
+        self._setDefault(errorCol="NERV2_fa6df3d6cd2f_error")
+        self._setDefault(outputCol="NERV2_fa6df3d6cd2f_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,11 +101,11 @@ class NERV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer)
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="NERV2_d9f7ee8f618b_error",
+        errorCol="NERV2_fa6df3d6cd2f_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="NERV2_d9f7ee8f618b_output",
+        outputCol="NERV2_fa6df3d6cd2f_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -328,6 +330,7 @@ class NERV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransformer)
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

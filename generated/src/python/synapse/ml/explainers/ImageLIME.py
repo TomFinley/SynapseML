@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -80,7 +82,7 @@ class ImageLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         model=None,
         modifier=130.0,
         numSamples=900,
-        outputCol="ImageLIME_e90831d99235__output",
+        outputCol="ImageLIME_20a1d84aad88__output",
         regularization=0.0,
         samplingFraction=0.7,
         superpixelCol="superpixels",
@@ -98,7 +100,7 @@ class ImageLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         self._setDefault(metricsCol="r2")
         self._setDefault(modifier=130.0)
         self._setDefault(numSamples=900)
-        self._setDefault(outputCol="ImageLIME_e90831d99235__output")
+        self._setDefault(outputCol="ImageLIME_20a1d84aad88__output")
         self._setDefault(regularization=0.0)
         self._setDefault(samplingFraction=0.7)
         self._setDefault(superpixelCol="superpixels")
@@ -124,7 +126,7 @@ class ImageLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         model=None,
         modifier=130.0,
         numSamples=900,
-        outputCol="ImageLIME_e90831d99235__output",
+        outputCol="ImageLIME_20a1d84aad88__output",
         regularization=0.0,
         samplingFraction=0.7,
         superpixelCol="superpixels",
@@ -383,5 +385,6 @@ class ImageLIME(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
 
     
 
+    
     
         

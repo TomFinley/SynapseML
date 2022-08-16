@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -38,7 +40,7 @@ class UnrollImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         self,
         java_obj=None,
         inputCol="image",
-        outputCol="UnrollImage_84b17b910724_output"
+        outputCol="UnrollImage_d24f53a761c0_output"
         ):
         super(UnrollImage, self).__init__()
         if java_obj is None:
@@ -46,7 +48,7 @@ class UnrollImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         else:
             self._java_obj = java_obj
         self._setDefault(inputCol="image")
-        self._setDefault(outputCol="UnrollImage_84b17b910724_output")
+        self._setDefault(outputCol="UnrollImage_d24f53a761c0_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -61,7 +63,7 @@ class UnrollImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
     def setParams(
         self,
         inputCol="image",
-        outputCol="UnrollImage_84b17b910724_output"
+        outputCol="UnrollImage_d24f53a761c0_output"
         ):
         """
         Set the (keyword only) parameters
@@ -122,5 +124,6 @@ class UnrollImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
 
     
 
+    
     
         

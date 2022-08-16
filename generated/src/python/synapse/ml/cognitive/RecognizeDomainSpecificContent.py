@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -66,7 +68,7 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="RecognizeDomainSpecificContent_6a0c31968ff6_error",
+        errorCol="RecognizeDomainSpecificContent_c22314a3712f_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -74,7 +76,7 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
         imageUrlCol=None,
         model=None,
         modelCol=None,
-        outputCol="RecognizeDomainSpecificContent_6a0c31968ff6_output",
+        outputCol="RecognizeDomainSpecificContent_c22314a3712f_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -86,8 +88,8 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="RecognizeDomainSpecificContent_6a0c31968ff6_error")
-        self._setDefault(outputCol="RecognizeDomainSpecificContent_6a0c31968ff6_output")
+        self._setDefault(errorCol="RecognizeDomainSpecificContent_c22314a3712f_error")
+        self._setDefault(outputCol="RecognizeDomainSpecificContent_c22314a3712f_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -104,7 +106,7 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="RecognizeDomainSpecificContent_6a0c31968ff6_error",
+        errorCol="RecognizeDomainSpecificContent_c22314a3712f_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -112,7 +114,7 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
         imageUrlCol=None,
         model=None,
         modelCol=None,
-        outputCol="RecognizeDomainSpecificContent_6a0c31968ff6_output",
+        outputCol="RecognizeDomainSpecificContent_c22314a3712f_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -361,6 +363,7 @@ class RecognizeDomainSpecificContent(ComplexParamsMixin, JavaMLReadable, JavaMLW
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

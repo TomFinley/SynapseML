@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -103,7 +105,7 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         categoryCol=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Translate_5308e53dad72_error",
+        errorCol="Translate_1ac350848c79_error",
         fromLanguage=None,
         fromLanguageCol=None,
         fromScript=None,
@@ -113,7 +115,7 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         includeAlignmentCol=None,
         includeSentenceLength=None,
         includeSentenceLengthCol=None,
-        outputCol="Translate_5308e53dad72_output",
+        outputCol="Translate_1ac350848c79_output",
         profanityAction=None,
         profanityActionCol=None,
         profanityMarker=None,
@@ -141,8 +143,8 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="Translate_5308e53dad72_error")
-        self._setDefault(outputCol="Translate_5308e53dad72_output")
+        self._setDefault(errorCol="Translate_1ac350848c79_error")
+        self._setDefault(outputCol="Translate_1ac350848c79_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -163,7 +165,7 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         categoryCol=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="Translate_5308e53dad72_error",
+        errorCol="Translate_1ac350848c79_error",
         fromLanguage=None,
         fromLanguageCol=None,
         fromScript=None,
@@ -173,7 +175,7 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         includeAlignmentCol=None,
         includeSentenceLength=None,
         includeSentenceLengthCol=None,
-        outputCol="Translate_5308e53dad72_output",
+        outputCol="Translate_1ac350848c79_output",
         profanityAction=None,
         profanityActionCol=None,
         profanityMarker=None,
@@ -724,6 +726,7 @@ class Translate(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

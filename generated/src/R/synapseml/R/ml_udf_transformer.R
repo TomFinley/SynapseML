@@ -17,7 +17,7 @@ ml_udf_transformer <- function(
     x,
     inputCol=NULL,
     inputCols=NULL,
-    outputCol="UDFTransformer_012e03b0dbaa_output",
+    outputCol="UDFTransformer_34e044568beb_output",
     udf=NULL,
     udfScala=NULL,
     only.model=FALSE,

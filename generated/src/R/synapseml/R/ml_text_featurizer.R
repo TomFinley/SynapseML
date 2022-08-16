@@ -35,7 +35,7 @@ ml_text_featurizer <- function(
     minTokenLength=0,
     nGramLength=2,
     numFeatures=262144,
-    outputCol="TextFeaturizer_9dbd2bc8aa07_output",
+    outputCol="TextFeaturizer_bb682ebc8291_output",
     stopWords=NULL,
     toLowercase=TRUE,
     tokenizerGaps=TRUE,

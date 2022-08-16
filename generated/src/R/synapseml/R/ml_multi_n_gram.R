@@ -15,7 +15,7 @@ ml_multi_n_gram <- function(
     x,
     inputCol=NULL,
     lengths=NULL,
-    outputCol="MultiNGram_d04481d5ec22_output",
+    outputCol="MultiNGram_66226d2face4_output",
     only.model=FALSE,
     uid=random_string("ml_multi_n_gram"),
     ...)

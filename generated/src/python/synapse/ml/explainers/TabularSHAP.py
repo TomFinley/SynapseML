@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -67,7 +69,7 @@ class TabularSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="TabularSHAP_6f7e95760399__output",
+        outputCol="TabularSHAP_1cc730355783__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability"
@@ -79,7 +81,7 @@ class TabularSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
             self._java_obj = java_obj
         self._setDefault(infWeight=1.0E+8)
         self._setDefault(metricsCol="r2")
-        self._setDefault(outputCol="TabularSHAP_6f7e95760399__output")
+        self._setDefault(outputCol="TabularSHAP_1cc730355783__output")
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
         if hasattr(self, "_input_kwargs"):
@@ -101,7 +103,7 @@ class TabularSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="TabularSHAP_6f7e95760399__output",
+        outputCol="TabularSHAP_1cc730355783__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability"
@@ -295,5 +297,6 @@ class TabularSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
 
     
 
+    
     
         

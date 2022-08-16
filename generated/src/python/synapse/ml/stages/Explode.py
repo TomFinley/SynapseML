@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -38,14 +40,14 @@ class Explode(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransforme
         self,
         java_obj=None,
         inputCol=None,
-        outputCol="Explode_52a6ba4e0c75_output"
+        outputCol="Explode_0646fba5cfaf_output"
         ):
         super(Explode, self).__init__()
         if java_obj is None:
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.stages.Explode", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(outputCol="Explode_52a6ba4e0c75_output")
+        self._setDefault(outputCol="Explode_0646fba5cfaf_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -60,7 +62,7 @@ class Explode(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransforme
     def setParams(
         self,
         inputCol=None,
-        outputCol="Explode_52a6ba4e0c75_output"
+        outputCol="Explode_0646fba5cfaf_output"
         ):
         """
         Set the (keyword only) parameters
@@ -121,5 +123,6 @@ class Explode(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransforme
 
     
 
+    
     
         

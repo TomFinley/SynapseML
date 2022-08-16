@@ -19,7 +19,7 @@ ml_page_splitter <- function(
     inputCol=NULL,
     maximumPageLength=5000,
     minimumPageLength=4500,
-    outputCol="PageSplitter_17dbb50b30cf_output",
+    outputCol="PageSplitter_5642d449133d_output",
     only.model=FALSE,
     uid=random_string("ml_page_splitter"),
     ...)

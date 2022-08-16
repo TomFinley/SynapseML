@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.nn.ConditionalKNNModel import ConditionalKNNModel
 
 @inherit_doc
@@ -57,7 +59,7 @@ class ConditionalKNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         k=5,
         labelCol="labels",
         leafSize=50,
-        outputCol="ConditionalKNN_c5e77d620ba3_output",
+        outputCol="ConditionalKNN_7b8ff2ed1e84_output",
         valuesCol="values"
         ):
         super(ConditionalKNN, self).__init__()
@@ -70,7 +72,7 @@ class ConditionalKNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         self._setDefault(k=5)
         self._setDefault(labelCol="labels")
         self._setDefault(leafSize=50)
-        self._setDefault(outputCol="ConditionalKNN_c5e77d620ba3_output")
+        self._setDefault(outputCol="ConditionalKNN_7b8ff2ed1e84_output")
         self._setDefault(valuesCol="values")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -90,7 +92,7 @@ class ConditionalKNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         k=5,
         labelCol="labels",
         leafSize=50,
-        outputCol="ConditionalKNN_c5e77d620ba3_output",
+        outputCol="ConditionalKNN_7b8ff2ed1e84_output",
         valuesCol="values"
         ):
         """
@@ -242,5 +244,6 @@ class ConditionalKNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

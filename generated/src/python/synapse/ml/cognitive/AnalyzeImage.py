@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -74,7 +76,7 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         concurrentTimeout=None,
         details=None,
         detailsCol=None,
-        errorCol="AnalyzeImage_0d7f72acd58e_error",
+        errorCol="AnalyzeImage_f635d7695541_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -82,7 +84,7 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="AnalyzeImage_0d7f72acd58e_output",
+        outputCol="AnalyzeImage_f635d7695541_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -96,8 +98,8 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="AnalyzeImage_0d7f72acd58e_error")
-        self._setDefault(outputCol="AnalyzeImage_0d7f72acd58e_output")
+        self._setDefault(errorCol="AnalyzeImage_f635d7695541_error")
+        self._setDefault(outputCol="AnalyzeImage_f635d7695541_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -116,7 +118,7 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         concurrentTimeout=None,
         details=None,
         detailsCol=None,
-        errorCol="AnalyzeImage_0d7f72acd58e_error",
+        errorCol="AnalyzeImage_f635d7695541_error",
         handler=None,
         imageBytes=None,
         imageBytesCol=None,
@@ -124,7 +126,7 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
         imageUrlCol=None,
         language=None,
         languageCol=None,
-        outputCol="AnalyzeImage_0d7f72acd58e_output",
+        outputCol="AnalyzeImage_f635d7695541_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -427,6 +429,7 @@ class AnalyzeImage(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTrans
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

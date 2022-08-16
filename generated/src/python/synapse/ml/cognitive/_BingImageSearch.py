@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -120,7 +122,7 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         concurrentTimeout=None,
         count=None,
         countCol=None,
-        errorCol="BingImageSearch_0683b462bbc8_error",
+        errorCol="BingImageSearch_a0f36e3fa7af_error",
         freshness=None,
         freshnessCol=None,
         handler=None,
@@ -148,7 +150,7 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         mktCol=None,
         offset=None,
         offsetCol=None,
-        outputCol="BingImageSearch_0683b462bbc8_output",
+        outputCol="BingImageSearch_a0f36e3fa7af_output",
         q=None,
         qCol=None,
         size=None,
@@ -166,8 +168,8 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="BingImageSearch_0683b462bbc8_error")
-        self._setDefault(outputCol="BingImageSearch_0683b462bbc8_output")
+        self._setDefault(errorCol="BingImageSearch_a0f36e3fa7af_error")
+        self._setDefault(outputCol="BingImageSearch_a0f36e3fa7af_output")
         self._setDefault(timeout=60.0)
         self._setDefault(url="https://api.bing.microsoft.com/v7.0/images/search")
         if hasattr(self, "_input_kwargs"):
@@ -191,7 +193,7 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         concurrentTimeout=None,
         count=None,
         countCol=None,
-        errorCol="BingImageSearch_0683b462bbc8_error",
+        errorCol="BingImageSearch_a0f36e3fa7af_error",
         freshness=None,
         freshnessCol=None,
         handler=None,
@@ -219,7 +221,7 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         mktCol=None,
         offset=None,
         offsetCol=None,
-        outputCol="BingImageSearch_0683b462bbc8_output",
+        outputCol="BingImageSearch_a0f36e3fa7af_output",
         q=None,
         qCol=None,
         size=None,
@@ -890,6 +892,7 @@ class _BingImageSearch(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
 
     
 
+    
     
     def setLinkedService(self, value):
         self._java_obj = self._java_obj.setLinkedService(value)

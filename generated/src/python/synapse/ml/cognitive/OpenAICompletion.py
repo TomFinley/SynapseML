@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -128,7 +130,7 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         deploymentNameCol=None,
         echo=None,
         echoCol=None,
-        errorCol="OpenAPICompletion_573e10118713_error",
+        errorCol="OpenAPICompletion_fc044524eaf3_error",
         frequencyPenalty=None,
         frequencyPenaltyCol=None,
         handler=None,
@@ -142,7 +144,7 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         modelCol=None,
         n=None,
         nCol=None,
-        outputCol="OpenAPICompletion_573e10118713_output",
+        outputCol="OpenAPICompletion_fc044524eaf3_output",
         presencePenalty=None,
         presencePenaltyCol=None,
         prompt=None,
@@ -166,8 +168,8 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="OpenAPICompletion_573e10118713_error")
-        self._setDefault(outputCol="OpenAPICompletion_573e10118713_output")
+        self._setDefault(errorCol="OpenAPICompletion_fc044524eaf3_error")
+        self._setDefault(outputCol="OpenAPICompletion_fc044524eaf3_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -198,7 +200,7 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         deploymentNameCol=None,
         echo=None,
         echoCol=None,
-        errorCol="OpenAPICompletion_573e10118713_error",
+        errorCol="OpenAPICompletion_fc044524eaf3_error",
         frequencyPenalty=None,
         frequencyPenaltyCol=None,
         handler=None,
@@ -212,7 +214,7 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
         modelCol=None,
         n=None,
         nCol=None,
-        outputCol="OpenAPICompletion_573e10118713_output",
+        outputCol="OpenAPICompletion_fc044524eaf3_output",
         presencePenalty=None,
         presencePenaltyCol=None,
         prompt=None,
@@ -889,6 +891,7 @@ class OpenAICompletion(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaT
 
     
 
+    
     
     def setServiceName(self, value):
         self._java_obj = self._java_obj.setServiceName(value)

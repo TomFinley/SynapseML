@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -75,7 +77,7 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="VerifyFaces_8bc2a68b434f_error",
+        errorCol="VerifyFaces_e1286bb44ba3_error",
         faceId=None,
         faceIdCol=None,
         faceId1=None,
@@ -85,7 +87,7 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         handler=None,
         largePersonGroupId=None,
         largePersonGroupIdCol=None,
-        outputCol="VerifyFaces_8bc2a68b434f_output",
+        outputCol="VerifyFaces_e1286bb44ba3_output",
         personGroupId=None,
         personGroupIdCol=None,
         personId=None,
@@ -101,8 +103,8 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="VerifyFaces_8bc2a68b434f_error")
-        self._setDefault(outputCol="VerifyFaces_8bc2a68b434f_output")
+        self._setDefault(errorCol="VerifyFaces_e1286bb44ba3_error")
+        self._setDefault(outputCol="VerifyFaces_e1286bb44ba3_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -119,7 +121,7 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="VerifyFaces_8bc2a68b434f_error",
+        errorCol="VerifyFaces_e1286bb44ba3_error",
         faceId=None,
         faceIdCol=None,
         faceId1=None,
@@ -129,7 +131,7 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
         handler=None,
         largePersonGroupId=None,
         largePersonGroupIdCol=None,
-        outputCol="VerifyFaces_8bc2a68b434f_output",
+        outputCol="VerifyFaces_e1286bb44ba3_output",
         personGroupId=None,
         personGroupIdCol=None,
         personId=None,
@@ -460,6 +462,7 @@ class VerifyFaces(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransf
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

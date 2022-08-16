@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -67,7 +69,7 @@ class VectorSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="VectorSHAP_c253b4f23e31__output",
+        outputCol="VectorSHAP_1272cf08b98e__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability"
@@ -79,7 +81,7 @@ class VectorSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
             self._java_obj = java_obj
         self._setDefault(infWeight=1.0E+8)
         self._setDefault(metricsCol="r2")
-        self._setDefault(outputCol="VectorSHAP_c253b4f23e31__output")
+        self._setDefault(outputCol="VectorSHAP_1272cf08b98e__output")
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
         if hasattr(self, "_input_kwargs"):
@@ -101,7 +103,7 @@ class VectorSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
         metricsCol="r2",
         model=None,
         numSamples=None,
-        outputCol="VectorSHAP_c253b4f23e31__output",
+        outputCol="VectorSHAP_1272cf08b98e__output",
         targetClasses=[],
         targetClassesCol=None,
         targetCol="probability"
@@ -295,5 +297,6 @@ class VectorSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfo
 
     
 
+    
     
         

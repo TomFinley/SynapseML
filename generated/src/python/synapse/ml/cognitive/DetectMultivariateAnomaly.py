@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -99,13 +101,13 @@ class DetectMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritab
         containerName=None,
         endTime=None,
         endpoint=None,
-        errorCol="DetectMultivariateAnomaly_c75498bb15c0_error",
+        errorCol="DetectMultivariateAnomaly_953ffc2e4532_error",
         initialPollingDelay=300,
         inputCols=None,
         intermediateSaveDir=None,
         maxPollingRetries=1000,
         modelId=None,
-        outputCol="DetectMultivariateAnomaly_c75498bb15c0_output",
+        outputCol="DetectMultivariateAnomaly_953ffc2e4532_output",
         pollingDelay=300,
         sasToken=None,
         startTime=None,
@@ -123,10 +125,10 @@ class DetectMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritab
         else:
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
-        self._setDefault(errorCol="DetectMultivariateAnomaly_c75498bb15c0_error")
+        self._setDefault(errorCol="DetectMultivariateAnomaly_953ffc2e4532_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="DetectMultivariateAnomaly_c75498bb15c0_output")
+        self._setDefault(outputCol="DetectMultivariateAnomaly_953ffc2e4532_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timestampCol="timestamp")
@@ -148,13 +150,13 @@ class DetectMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritab
         containerName=None,
         endTime=None,
         endpoint=None,
-        errorCol="DetectMultivariateAnomaly_c75498bb15c0_error",
+        errorCol="DetectMultivariateAnomaly_953ffc2e4532_error",
         initialPollingDelay=300,
         inputCols=None,
         intermediateSaveDir=None,
         maxPollingRetries=1000,
         modelId=None,
-        outputCol="DetectMultivariateAnomaly_c75498bb15c0_output",
+        outputCol="DetectMultivariateAnomaly_953ffc2e4532_output",
         pollingDelay=300,
         sasToken=None,
         startTime=None,
@@ -539,6 +541,7 @@ class DetectMultivariateAnomaly(ComplexParamsMixin, JavaMLReadable, JavaMLWritab
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -46,7 +48,7 @@ class ValueIndexerModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         dataType="string",
         inputCol="input",
         levels=None,
-        outputCol="ValueIndexerModel_dfaa249dbc52_output"
+        outputCol="ValueIndexerModel_49a2f49102f5_output"
         ):
         super(ValueIndexerModel, self).__init__()
         if java_obj is None:
@@ -55,7 +57,7 @@ class ValueIndexerModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
             self._java_obj = java_obj
         self._setDefault(dataType="string")
         self._setDefault(inputCol="input")
-        self._setDefault(outputCol="ValueIndexerModel_dfaa249dbc52_output")
+        self._setDefault(outputCol="ValueIndexerModel_49a2f49102f5_output")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
         else:
@@ -72,7 +74,7 @@ class ValueIndexerModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
         dataType="string",
         inputCol="input",
         levels=None,
-        outputCol="ValueIndexerModel_dfaa249dbc52_output"
+        outputCol="ValueIndexerModel_49a2f49102f5_output"
         ):
         """
         Set the (keyword only) parameters
@@ -165,5 +167,6 @@ class ValueIndexerModel(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Java
 
     
 
+    
     
         

@@ -18,7 +18,7 @@ ml_resize_image_transformer <- function(
     height=NULL,
     inputCol="image",
     nChannels=NULL,
-    outputCol="ResizeImageTransformer_5bd248032411_output",
+    outputCol="ResizeImageTransformer_5ee729e4aa10_output",
     width=NULL,
     only.model=FALSE,
     uid=random_string("ml_resize_image_transformer"),

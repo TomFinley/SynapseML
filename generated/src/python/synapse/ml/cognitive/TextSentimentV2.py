@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -63,11 +65,11 @@ class TextSentimentV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TextSentimentV2_891465b68d9c_error",
+        errorCol="TextSentimentV2_ac42dfd009c9_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="TextSentimentV2_891465b68d9c_output",
+        outputCol="TextSentimentV2_ac42dfd009c9_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -81,8 +83,8 @@ class TextSentimentV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="TextSentimentV2_891465b68d9c_error")
-        self._setDefault(outputCol="TextSentimentV2_891465b68d9c_output")
+        self._setDefault(errorCol="TextSentimentV2_ac42dfd009c9_error")
+        self._setDefault(outputCol="TextSentimentV2_ac42dfd009c9_output")
         self._setDefault(timeout=60.0)
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -99,11 +101,11 @@ class TextSentimentV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="TextSentimentV2_891465b68d9c_error",
+        errorCol="TextSentimentV2_ac42dfd009c9_error",
         handler=None,
         language=None,
         languageCol=None,
-        outputCol="TextSentimentV2_891465b68d9c_output",
+        outputCol="TextSentimentV2_ac42dfd009c9_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         text=None,
@@ -328,6 +330,7 @@ class TextSentimentV2(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTr
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)

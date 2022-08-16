@@ -23,7 +23,7 @@ ml_image_transformer <- function(
     inputCol="image",
     normalizeMean=NULL,
     normalizeStd=NULL,
-    outputCol="ImageTransformer_1643908175cf_output",
+    outputCol="ImageTransformer_33fdea758651_output",
     stages=NULL,
     tensorChannelOrder="RGB",
     tensorElementType=NULL,

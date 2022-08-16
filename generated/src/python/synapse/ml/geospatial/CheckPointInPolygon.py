@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -66,13 +68,13 @@ class CheckPointInPolygon(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Ja
         java_obj=None,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="CheckPointInPolygon_37757dfc3e60_error",
+        errorCol="CheckPointInPolygon_7c7f60acfc25_error",
         handler=None,
         latitude=None,
         latitudeCol=None,
         longitude=None,
         longitudeCol=None,
-        outputCol="CheckPointInPolygon_37757dfc3e60_output",
+        outputCol="CheckPointInPolygon_7c7f60acfc25_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -86,8 +88,8 @@ class CheckPointInPolygon(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Ja
         else:
             self._java_obj = java_obj
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="CheckPointInPolygon_37757dfc3e60_error")
-        self._setDefault(outputCol="CheckPointInPolygon_37757dfc3e60_output")
+        self._setDefault(errorCol="CheckPointInPolygon_7c7f60acfc25_error")
+        self._setDefault(outputCol="CheckPointInPolygon_7c7f60acfc25_output")
         self._setDefault(timeout=60.0)
         self._setDefault(url="https://atlas.microsoft.com/")
         if hasattr(self, "_input_kwargs"):
@@ -105,13 +107,13 @@ class CheckPointInPolygon(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Ja
         self,
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="CheckPointInPolygon_37757dfc3e60_error",
+        errorCol="CheckPointInPolygon_7c7f60acfc25_error",
         handler=None,
         latitude=None,
         latitudeCol=None,
         longitude=None,
         longitudeCol=None,
-        outputCol="CheckPointInPolygon_37757dfc3e60_output",
+        outputCol="CheckPointInPolygon_7c7f60acfc25_output",
         subscriptionKey=None,
         subscriptionKeyCol=None,
         timeout=60.0,
@@ -362,6 +364,7 @@ class CheckPointInPolygon(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, Ja
 
     
 
+    
     
     def setGeography(self, value):
         self._java_obj = self._java_obj.setGeography(value)

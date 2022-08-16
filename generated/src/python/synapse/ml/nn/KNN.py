@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.nn.KNNModel import KNNModel
 
 @inherit_doc
@@ -49,7 +51,7 @@ class KNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEstimator):
         featuresCol="features",
         k=5,
         leafSize=50,
-        outputCol="KNN_8f58db1a7278_output",
+        outputCol="KNN_f3d3d28ccd7c_output",
         valuesCol="values"
         ):
         super(KNN, self).__init__()
@@ -60,7 +62,7 @@ class KNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEstimator):
         self._setDefault(featuresCol="features")
         self._setDefault(k=5)
         self._setDefault(leafSize=50)
-        self._setDefault(outputCol="KNN_8f58db1a7278_output")
+        self._setDefault(outputCol="KNN_f3d3d28ccd7c_output")
         self._setDefault(valuesCol="values")
         if hasattr(self, "_input_kwargs"):
             kwargs = self._input_kwargs
@@ -78,7 +80,7 @@ class KNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEstimator):
         featuresCol="features",
         k=5,
         leafSize=50,
-        outputCol="KNN_8f58db1a7278_output",
+        outputCol="KNN_f3d3d28ccd7c_output",
         valuesCol="values"
         ):
         """
@@ -198,5 +200,6 @@ class KNN(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEstimator):
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from pyspark.ml import PipelineModel
 
 @inherit_doc
@@ -90,7 +92,7 @@ class TextFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         minTokenLength=0,
         nGramLength=2,
         numFeatures=262144,
-        outputCol="TextFeaturizer_32cf721b3326_output",
+        outputCol="TextFeaturizer_6a1214e260df_output",
         stopWords=None,
         toLowercase=True,
         tokenizerGaps=True,
@@ -112,7 +114,7 @@ class TextFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         self._setDefault(minTokenLength=0)
         self._setDefault(nGramLength=2)
         self._setDefault(numFeatures=262144)
-        self._setDefault(outputCol="TextFeaturizer_32cf721b3326_output")
+        self._setDefault(outputCol="TextFeaturizer_6a1214e260df_output")
         self._setDefault(toLowercase=True)
         self._setDefault(tokenizerGaps=True)
         self._setDefault(tokenizerPattern="\\s+")
@@ -141,7 +143,7 @@ class TextFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         minTokenLength=0,
         nGramLength=2,
         numFeatures=262144,
-        outputCol="TextFeaturizer_32cf721b3326_output",
+        outputCol="TextFeaturizer_6a1214e260df_output",
         stopWords=None,
         toLowercase=True,
         tokenizerGaps=True,
@@ -460,5 +462,6 @@ class TextFeaturizer(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEst
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -74,7 +76,7 @@ class ImageSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         model=None,
         modifier=130.0,
         numSamples=None,
-        outputCol="ImageSHAP_0d47e5d7a852__output",
+        outputCol="ImageSHAP_6910925ada3a__output",
         superpixelCol="superpixels",
         targetClasses=[],
         targetClassesCol=None,
@@ -89,7 +91,7 @@ class ImageSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         self._setDefault(infWeight=1.0E+8)
         self._setDefault(metricsCol="r2")
         self._setDefault(modifier=130.0)
-        self._setDefault(outputCol="ImageSHAP_0d47e5d7a852__output")
+        self._setDefault(outputCol="ImageSHAP_6910925ada3a__output")
         self._setDefault(superpixelCol="superpixels")
         self._setDefault(targetClasses=[])
         self._setDefault(targetCol="probability")
@@ -113,7 +115,7 @@ class ImageSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
         model=None,
         modifier=130.0,
         numSamples=None,
-        outputCol="ImageSHAP_0d47e5d7a852__output",
+        outputCol="ImageSHAP_6910925ada3a__output",
         superpixelCol="superpixels",
         targetClasses=[],
         targetClassesCol=None,
@@ -338,5 +340,6 @@ class ImageSHAP(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTransfor
 
     
 
+    
     
         

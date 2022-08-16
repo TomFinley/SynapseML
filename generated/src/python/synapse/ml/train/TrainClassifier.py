@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 from synapse.ml.train.TrainedClassifierModel import TrainedClassifierModel
 
 @inherit_doc
@@ -49,7 +51,7 @@ class TrainClassifier(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEs
     def __init__(
         self,
         java_obj=None,
-        featuresCol="TrainClassifier_4a32f011f084_features",
+        featuresCol="TrainClassifier_39251d9d5223_features",
         labelCol=None,
         labels=None,
         model=None,
@@ -61,7 +63,7 @@ class TrainClassifier(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEs
             self._java_obj = self._new_java_obj("com.microsoft.azure.synapse.ml.train.TrainClassifier", self.uid)
         else:
             self._java_obj = java_obj
-        self._setDefault(featuresCol="TrainClassifier_4a32f011f084_features")
+        self._setDefault(featuresCol="TrainClassifier_39251d9d5223_features")
         self._setDefault(numFeatures=0)
         self._setDefault(reindexLabel=True)
         if hasattr(self, "_input_kwargs"):
@@ -77,7 +79,7 @@ class TrainClassifier(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEs
     @keyword_only
     def setParams(
         self,
-        featuresCol="TrainClassifier_4a32f011f084_features",
+        featuresCol="TrainClassifier_39251d9d5223_features",
         labelCol=None,
         labels=None,
         model=None,
@@ -217,5 +219,6 @@ class TrainClassifier(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaEs
         java_model = self._fit_java(dataset)
         return self._create_model(java_model)
 
+    
     
         

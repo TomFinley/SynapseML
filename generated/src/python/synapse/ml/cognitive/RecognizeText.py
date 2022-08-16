@@ -18,6 +18,8 @@ from pyspark.ml.common import inherit_doc
 from synapse.ml.core.schema.Utils import *
 from pyspark.ml.param import TypeConverters
 from synapse.ml.core.schema.TypeConversionUtils import generateTypeConverter, complexTypeConverter
+from py4j.java_collections import SetConverter, MapConverter, ListConverter
+from typing import List, Optional
 
 
 @inherit_doc
@@ -79,7 +81,7 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="RecognizeText_20aeae2ab6a2_error",
+        errorCol="RecognizeText_298c97e1c4ac_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -88,7 +90,7 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         maxPollingRetries=1000,
         mode=None,
         modeCol=None,
-        outputCol="RecognizeText_20aeae2ab6a2_output",
+        outputCol="RecognizeText_298c97e1c4ac_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -103,10 +105,10 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
             self._java_obj = java_obj
         self._setDefault(backoffs=[100,500,1000])
         self._setDefault(concurrency=1)
-        self._setDefault(errorCol="RecognizeText_20aeae2ab6a2_error")
+        self._setDefault(errorCol="RecognizeText_298c97e1c4ac_error")
         self._setDefault(initialPollingDelay=300)
         self._setDefault(maxPollingRetries=1000)
-        self._setDefault(outputCol="RecognizeText_20aeae2ab6a2_output")
+        self._setDefault(outputCol="RecognizeText_298c97e1c4ac_output")
         self._setDefault(pollingDelay=300)
         self._setDefault(suppressMaxRetriesExceededException=False)
         self._setDefault(timeout=60.0)
@@ -126,7 +128,7 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         backoffs=[100,500,1000],
         concurrency=1,
         concurrentTimeout=None,
-        errorCol="RecognizeText_20aeae2ab6a2_error",
+        errorCol="RecognizeText_298c97e1c4ac_error",
         imageBytes=None,
         imageBytesCol=None,
         imageUrl=None,
@@ -135,7 +137,7 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
         maxPollingRetries=1000,
         mode=None,
         modeCol=None,
-        outputCol="RecognizeText_20aeae2ab6a2_output",
+        outputCol="RecognizeText_298c97e1c4ac_output",
         pollingDelay=300,
         subscriptionKey=None,
         subscriptionKeyCol=None,
@@ -450,6 +452,7 @@ class RecognizeText(ComplexParamsMixin, JavaMLReadable, JavaMLWritable, JavaTran
 
     
 
+    
     
     def setLocation(self, value):
         self._java_obj = self._java_obj.setLocation(value)
